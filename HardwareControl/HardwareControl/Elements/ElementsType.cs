@@ -9,6 +9,7 @@
         Not,
         NotAnd,
         NotOr,
-        NotXor
+        NotXor,
+        Xor
     };
 }

@@ -46,9 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\AndElement.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\ElementsType.cs" />
     <Compile Include="Elements\ElementValues.cs" />
+    <Compile Include="Elements\LogicElement.cs" />
+    <Compile Include="Elements\Logic\AndLogic.cs" />
+    <Compile Include="Elements\Logic\ILogic.cs" />
+    <Compile Include="Elements\Logic\NotAndLogic.cs" />
+    <Compile Include="Elements\Logic\NotLogic.cs" />
+    <Compile Include="Elements\Logic\NotOrLogic.cs" />
+    <Compile Include="Elements\Logic\NotXorLogic.cs" />
+    <Compile Include="Elements\Logic\OrLogic.cs" />
+    <Compile Include="Elements\Logic\XorLogic.cs" />
     <Compile Include="Elements\Wire.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
