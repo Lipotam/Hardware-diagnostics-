@@ -46,10 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenerationType.cs" />
+    <Compile Include="Lab1\OneDimensionalWayActivation.cs" />
+    <Compile Include="Lab2\D-cube.cs" />
+    <Compile Include="Lab2\D_cubeValues.cs" />
+    <Compile Include="Lab2\MultiDimensionalWayActivation.cs" />
+    <Compile Include="ModelingSetsComparer.cs" />
+    <Compile Include="Services\ElementCreator.cs" />
+    <Compile Include="Services\ElementFactory.cs" />
     <Compile Include="Elements\AndElement.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\ElementsType.cs" />
     <Compile Include="Elements\ElementValues.cs" />
+    <Compile Include="Elements\InputElement.cs" />
     <Compile Include="Elements\LogicElement.cs" />
     <Compile Include="Elements\Logic\AndLogic.cs" />
     <Compile Include="Elements\Logic\ILogic.cs" />
@@ -59,15 +68,33 @@
     <Compile Include="Elements\Logic\NotXorLogic.cs" />
     <Compile Include="Elements\Logic\OrLogic.cs" />
     <Compile Include="Elements\Logic\XorLogic.cs" />
+    <Compile Include="Elements\NotAndElement.cs" />
+    <Compile Include="Elements\NotElement.cs" />
+    <Compile Include="Elements\NotOrElement.cs" />
+    <Compile Include="Elements\NotXorElement.cs" />
+    <Compile Include="Elements\OrElement.cs" />
+    <Compile Include="Elements\OutputElement.cs" />
     <Compile Include="Elements\Wire.cs" />
+    <Compile Include="Elements\XorElement.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateTestsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateTestsDialog.Designer.cs">
+      <DependentUpon>GenerateTestsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IElementCreator.cs" />
+    <Compile Include="IOController.cs" />
+    <Compile Include="ModelingSet.cs" />
+    <Compile Include="MyShema.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShemaMap.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
