@@ -156,7 +156,7 @@ namespace HardwareControl.Lab1
                         {
                             Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
                             List<ModelingSet> setsFalse = new List<ModelingSet>();
-                            foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.AllOnes))
+                            foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.AllNulls))
                             {
                                 List<ModelingSet> sets = new List<ModelingSet>();
                                 for (int i = 0; i < element.Inputs.Count; i++)
@@ -166,7 +166,7 @@ namespace HardwareControl.Lab1
                                 setsFalse = InterceptModelingSets(setsFalse, sets);
                             }
                             List<ModelingSet> setsTrue = new List<ModelingSet>();
-                            foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.AllOnes))
+                            foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.ExeptAllNulls))
                             {
                                 List<ModelingSet> sets = new List<ModelingSet>();
                                 for (int i = 0; i < element.Inputs.Count; i++)
@@ -218,6 +218,20 @@ namespace HardwareControl.Lab1
                     }
                     sets = UnionModelingSets(sets, anotherInputsSets);
                 }
+
+                if ((element.Type == ElementsType.NotXor) || (element.Type == ElementsType.Xor))
+                {
+                    List<ModelingSet> anotherInputsSets = new List<ModelingSet>();
+                    foreach (List<bool> list in GenerateSets(anotherInputs.Count, GenerationType.AllNulls))
+                    {
+                        for (int i = 0; i < anotherInputs.Count; i++)
+                        {
+                            anotherInputsSets = UnionModelingSets(anotherInputsSets, GetSetsByOutputValue(anotherInputs[i].Setter, list[i], controller));
+                        }
+                    }
+                    sets = UnionModelingSets(sets, anotherInputsSets);
+                }
+
                 wire = element.Outputs[0];
             }
             return sets;
