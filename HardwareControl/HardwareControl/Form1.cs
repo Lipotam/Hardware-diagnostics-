@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using HardwareControl.Elements;
 using HardwareControl.Lab1;
 using HardwareControl.Lab2;
+using HardwareControl.Lab3;
 
 namespace HardwareControl
 {
@@ -87,6 +88,51 @@ namespace HardwareControl
                 subItems.AddRange(results[i].ToList());
                 listView.Items[i] = new ListViewItem(subItems.ToArray());
             }
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            defectsListView.Items.Clear();
+            minDefectsListView.Items.Clear();
+            List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(map);
+            foreach (DefectSet defectSet in allDefectSets)
+            {
+                List<String> items = new List<String>
+                                         {
+                                             defectSet.ModelingSet.ToString(),
+                                             defectSet.ConstFalseDefects,
+                                             defectSet.ConstTrueDefects,
+                                             defectSet.DefectsCount.ToString()
+                                         };
+                defectsListView.Items.Add(new ListViewItem(items.ToArray()));
+            }
+
+            int switchesNum = 0;
+            List<DefectSet> minimalDefectSets = PowerConsumptionMinimization.MinimalDefectSets(allDefectSets);
+            for (int i = 0; i < minimalDefectSets.Count; i++)
+            {
+                switchesNum += minimalDefectSets[i].ModelingWires.SwitchingNumbers(minimalDefectSets[(i + 1) % minimalDefectSets.Count].ModelingWires);
+            }
+            switchesLabel.Text = "Switches before minimisation = " + switchesNum.ToString();
+            minimalDefectSets = PowerConsumptionMinimization.MinimalPowerSequence(minimalDefectSets);
+            switchesNum = 0;
+            for (int i = 0; i < minimalDefectSets.Count; i++)
+            {
+                List<String> items = new List<string> { minimalDefectSets[i].ModelingSet.ToString() };
+                foreach (Wire wire in map.Wires)
+                {
+                    items.Add(minimalDefectSets[i].IsDefectDetected(wire.Name, false) ? "+" : " ");
+                }
+                foreach (Wire wire in map.Wires)
+                {
+                    items.Add(minimalDefectSets[i].IsDefectDetected(wire.Name, true) ? "+" : " ");
+                }
+                int switches = minimalDefectSets[i].ModelingWires.SwitchingNumbers(minimalDefectSets[(i + 1) % minimalDefectSets.Count].ModelingWires);
+                switchesNum += switches;
+                items.Add(switches.ToString());
+                minDefectsListView.Items.Add(new ListViewItem(items.ToArray()));
+            }
+            switchesLabel.Text += "; Switches after minimisation = " + switchesNum.ToString();
         }
     }
 }

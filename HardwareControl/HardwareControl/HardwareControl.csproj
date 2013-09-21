@@ -51,6 +51,8 @@
     <Compile Include="Lab2\D-cube.cs" />
     <Compile Include="Lab2\D_cubeValues.cs" />
     <Compile Include="Lab2\MultiDimensionalWayActivation.cs" />
+    <Compile Include="Lab3\DefectSet.cs" />
+    <Compile Include="Lab3\PowerConsumptionMinimization.cs" />
     <Compile Include="ModelingSetsComparer.cs" />
     <Compile Include="Services\ElementCreator.cs" />
     <Compile Include="Services\ElementFactory.cs" />

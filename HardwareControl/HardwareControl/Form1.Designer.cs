@@ -41,15 +41,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.startButton = new System.Windows.Forms.Button();
+            this.minDefectsListView = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.defectsListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.minDefectsListView = new System.Windows.Forms.ListView();
-            this.startButton = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.switchesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -58,8 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // shemaPictureBox
@@ -92,7 +93,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1158, 457);
+            this.tabPage1.Size = new System.Drawing.Size(1158, 471);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lab1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -136,7 +137,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1158, 457);
+            this.tabPage2.Size = new System.Drawing.Size(1158, 471);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lab2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -185,6 +186,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.switchesLabel);
             this.tabPage3.Controls.Add(this.startButton);
             this.tabPage3.Controls.Add(this.minDefectsListView);
             this.tabPage3.Controls.Add(this.groupBox3);
@@ -196,15 +198,26 @@
             this.tabPage3.Text = "Lab3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
+            // startButton
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(5, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(316, 181);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.startButton.Location = new System.Drawing.Point(5, 445);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(71, 23);
+            this.startButton.TabIndex = 4;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // minDefectsListView
+            // 
+            this.minDefectsListView.FullRowSelect = true;
+            this.minDefectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.minDefectsListView.Location = new System.Drawing.Point(5, 196);
+            this.minDefectsListView.Name = "minDefectsListView";
+            this.minDefectsListView.Size = new System.Drawing.Size(1140, 243);
+            this.minDefectsListView.TabIndex = 3;
+            this.minDefectsListView.UseCompatibleStateImageBehavior = false;
+            this.minDefectsListView.View = System.Windows.Forms.View.Details;
             // 
             // groupBox3
             // 
@@ -252,25 +265,23 @@
             this.columnHeader4.Text = "N";
             this.columnHeader4.Width = 20;
             // 
-            // minDefectsListView
+            // pictureBox2
             // 
-            this.minDefectsListView.FullRowSelect = true;
-            this.minDefectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.minDefectsListView.Location = new System.Drawing.Point(5, 196);
-            this.minDefectsListView.Name = "minDefectsListView";
-            this.minDefectsListView.Size = new System.Drawing.Size(1140, 243);
-            this.minDefectsListView.TabIndex = 3;
-            this.minDefectsListView.UseCompatibleStateImageBehavior = false;
-            this.minDefectsListView.View = System.Windows.Forms.View.Details;
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Location = new System.Drawing.Point(5, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(316, 181);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
             // 
-            // startButton
+            // switchesLabel
             // 
-            this.startButton.Location = new System.Drawing.Point(5, 445);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(71, 23);
-            this.startButton.TabIndex = 4;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
+            this.switchesLabel.AutoSize = true;
+            this.switchesLabel.Location = new System.Drawing.Point(167, 446);
+            this.switchesLabel.Name = "switchesLabel";
+            this.switchesLabel.Size = new System.Drawing.Size(0, 13);
+            this.switchesLabel.TabIndex = 5;
             // 
             // Form1
             // 
@@ -289,8 +300,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage3.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -318,6 +330,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Label switchesLabel;
 	}
 }
 
