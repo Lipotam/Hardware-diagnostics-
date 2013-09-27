@@ -38,6 +38,19 @@ namespace HardwareControl
                 testsListView.Columns.Add(name, columnWidth);
                 listView1.Columns.Add(name, columnWidth);
             }
+
+            //lab3 tab
+            minDefectsListView.Columns.Add("Modeling Set", 220);
+            int column = (minDefectsListView.Width - 292) / (map.Wires.Count * 2);
+            foreach (Wire wire in map.Wires)
+            {
+                minDefectsListView.Columns.Add(wire.Name + "=0", column);
+            }
+            foreach (Wire wire in map.Wires)
+            {
+                minDefectsListView.Columns.Add(wire.Name + "=1", column);
+            }
+            minDefectsListView.Columns.Add("Switches", 60);
         }
 
         private void button1_Click(object sender, EventArgs e)

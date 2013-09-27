@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using HardwareControl.Elements;
 
 namespace HardwareControl.Lab3
@@ -105,7 +104,7 @@ namespace HardwareControl.Lab3
                 case ElementsType.Output:
                     {
                         Wire input = element.Inputs[0];
-                        bool value = set.modelingWires.GetValue(input.Name) == ElementsValues.True ? false : true;
+                        bool value = set.modelingWires.GetValue(input.Name) != ElementsValues.True;
                         set.defects[input.Name][value] = true;
                         return ReverseWayActivation(set, input.Setter);
                     }
@@ -160,6 +159,44 @@ namespace HardwareControl.Lab3
                             foreach (Wire input in element.Inputs)
                             {
                                 set.defects[input.Name][true] = true;
+                                set = ReverseWayActivation(set, input.Setter);
+                            }
+                        }
+                        return set;
+                    }
+
+                case ElementsType.Xor:
+                case ElementsType.NotXor:
+                    {
+                        if (element.Inputs.First().GetValue() != element.Inputs.Last().GetValue())
+                        {
+                            if (element.Inputs.First().GetValue() == ElementsValues.False)
+                            {
+                                set.defects[element.Inputs.First().Name][false] = true;
+                                set.defects[element.Inputs.Last().Name][true] = true;
+                                return ReverseWayActivation(set, element.Inputs.First().Setter);
+                            }
+                            else
+                            {
+                                set.defects[element.Inputs.Last().Name][false] = true;
+                                set.defects[element.Inputs.First().Name][true] = true;
+                                return ReverseWayActivation(set, element.Inputs.Last().Setter);
+                            }
+                        }
+                        else
+                        {
+                            foreach (Wire input in element.Inputs)
+                            {
+
+                                if (element.Inputs.First().GetValue() == ElementsValues.False)
+                                {
+                                    set.defects[input.Name][true] = true;
+                                }
+                                else
+                                {
+                                    set.defects[input.Name][false] = true;
+                                }
+
                                 set = ReverseWayActivation(set, input.Setter);
                             }
                         }
