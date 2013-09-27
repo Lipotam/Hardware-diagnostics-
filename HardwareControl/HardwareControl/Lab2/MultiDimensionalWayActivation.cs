@@ -149,7 +149,56 @@ namespace HardwareControl.Lab2
                         }
                         break;
                     }
-                default: return null;
+				case ElementsType.Xor:
+					{
+						if (type)
+						{
+							for (int i = 0; i < 2; i++)
+							{
+								DCube c = new DCube(_wires);
+								foreach (Wire w in wire.Setter.Inputs)
+								{
+									if (i == 0)
+									{
+										c.SetValue(w.Name, D_cubeValues.Null);
+									}
+									else
+									{
+										c.SetValue(w.Name, D_cubeValues.One);
+									}
+
+								}
+								c.SetValue(wire.Name, D_cubeValues.NotD);
+								cubes.Add(c);
+							}
+						}
+						else
+						{
+							for (int i = 0; i < 2; i++)
+							{
+								bool trigger = i > 0;
+								DCube c = new DCube(_wires);
+								foreach (Wire w in wire.Setter.Inputs)
+								{
+									if (!trigger)
+									{
+										c.SetValue(w.Name, D_cubeValues.Null);
+										trigger = !trigger;
+									}
+									else
+									{
+										c.SetValue(w.Name, D_cubeValues.One);
+										trigger = !trigger;
+									}
+									
+								}
+								c.SetValue(wire.Name, D_cubeValues.NotD);
+								cubes.Add(c);
+							}
+						}
+						break;
+					}
+	            default: return null;
             }
             cubes = IntersectCubeSets(cubes, ActivateWay(wire));
             List<Element> anotherElements = _allElements.Except(_onWayOut).ToList();
