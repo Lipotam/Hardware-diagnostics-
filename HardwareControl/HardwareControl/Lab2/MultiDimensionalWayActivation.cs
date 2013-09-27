@@ -182,13 +182,12 @@ namespace HardwareControl.Lab2
 									if (!trigger)
 									{
 										c.SetValue(w.Name, D_cubeValues.Null);
-										trigger = !trigger;
 									}
 									else
 									{
 										c.SetValue(w.Name, D_cubeValues.One);
-										trigger = !trigger;
 									}
+                                    trigger = !trigger;
 								}
 								c.SetValue(wire.Name, D_cubeValues.NotD);
 								cubes.Add(c);
@@ -209,13 +208,12 @@ namespace HardwareControl.Lab2
 									if (!trigger)
 									{
 										c.SetValue(w.Name, D_cubeValues.Null);
-										trigger = !trigger;
 									}
 									else
 									{
 										c.SetValue(w.Name, D_cubeValues.One);
-										trigger = !trigger;
 									}
+                                    trigger = !trigger;
 								}
 								c.SetValue(wire.Name, D_cubeValues.D);
 								cubes.Add(c);

@@ -12,6 +12,7 @@ namespace HardwareControl
     {
         private ShemaMap map;
         private List<ModelingSet> modelingSets;
+        private bool selectedType;
 
         public Form1()
         {
@@ -78,17 +79,39 @@ namespace HardwareControl
             dialog.WireNames = this.map.GetWiresNames();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                List<ModelingSet> tests = MultiDimensionalWayActivation.FindTests(this.map.Wires[dialog.SelectedIndex], dialog.SelectedType, this.map.GetWiresNames(), this.map);
+                selectedType = dialog.SelectedType;
+                List<ModelingSet> tests = MultiDimensionalWayActivation.FindTests(this.map.Wires[dialog.SelectedIndex], selectedType, this.map.GetWiresNames(), this.map);
 
                 listView1.Items.Clear();
                 this.modelingSets.Clear();
-                foreach (ModelingSet test in tests)
+
+                List<ModelingSet> results = GetResults();
+
+                foreach (ModelingSet test in results)
                 {
                     listView1.Items.Add(new ListViewItem(test.ToList().ToArray()));
                 }
                 this.modelingSets.AddRange(tests);
             }
-            SimulateAllSets(listView1);
+        }
+
+        private void RemoveInvertedOutputSets(ICollection<ModelingSet> modelingSets)
+        {
+            List<ModelingSet> setsToRemove = new List<ModelingSet>();
+            foreach (ModelingSet modelingSet in modelingSets)
+            {
+                string key = modelingSet.ElementNames[modelingSet.ElementNames.Count -1];
+                ElementsValues value = modelingSet.GetValue(key);
+                if ((value == ElementsValues.False && selectedType) || (value == ElementsValues.True && !selectedType))
+                {
+                    setsToRemove.Add(modelingSet);
+                }
+            }
+
+            foreach (ModelingSet modelingSet in setsToRemove)
+            {
+                modelingSets.Remove(modelingSet);
+            }
         }
 
         private void SimulateAllSets(ListView listView)
@@ -101,6 +124,13 @@ namespace HardwareControl
                 subItems.AddRange(results[i].ToList());
                 listView.Items[i] = new ListViewItem(subItems.ToArray());
             }
+        }
+
+        private List<ModelingSet> GetResults()
+        {
+            List<ModelingSet> results = map.IOController.ProcessModeling(modelingSets);
+            RemoveInvertedOutputSets(results);
+            return results;
         }
 
         private void startButton_Click(object sender, EventArgs e)
