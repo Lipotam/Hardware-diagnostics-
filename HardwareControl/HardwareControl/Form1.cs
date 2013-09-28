@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using HardwareControl.Elements;
 using HardwareControl.Lab1;
@@ -84,34 +85,36 @@ namespace HardwareControl
 
                 listView1.Items.Clear();
                 this.modelingSets.Clear();
+                List<ModelingSet> results = map.IOController.ProcessModeling(tests);
+                List<int> setsToRemove = GetSetsToRemove(results);
 
-                List<ModelingSet> results = GetResults();
-
-                foreach (ModelingSet test in results)
+                for (int i = 0; i < tests.Count; i++)
                 {
-                    listView1.Items.Add(new ListViewItem(test.ToList().ToArray()));
+                    if (setsToRemove.All(s => s != i))
+                    {
+                        listView1.Items.Add(new ListViewItem(tests[i].ToList().ToArray()));
+                        modelingSets.Add(tests[i]);
+                    }
                 }
-                this.modelingSets.AddRange(tests);
             }
+            SimulateAllSets(listView1);
+            
         }
 
-        private void RemoveInvertedOutputSets(ICollection<ModelingSet> modelingSets)
+        private List<int> GetSetsToRemove(List<ModelingSet> modelingSets)
         {
-            List<ModelingSet> setsToRemove = new List<ModelingSet>();
-            foreach (ModelingSet modelingSet in modelingSets)
+            List<int> setsToRemove = new List<int>();
+            for (int i = 0; i < modelingSets.Count; i++)
             {
-                string key = modelingSet.ElementNames[modelingSet.ElementNames.Count -1];
-                ElementsValues value = modelingSet.GetValue(key);
+                string key = modelingSets[i].ElementNames[modelingSets[i].ElementNames.Count - 1];
+                ElementsValues value = modelingSets[i].GetValue(key);
                 if ((value == ElementsValues.False && selectedType) || (value == ElementsValues.True && !selectedType))
                 {
-                    setsToRemove.Add(modelingSet);
+                    setsToRemove.Add(i);
                 }
             }
 
-            foreach (ModelingSet modelingSet in setsToRemove)
-            {
-                modelingSets.Remove(modelingSet);
-            }
+            return setsToRemove;
         }
 
         private void SimulateAllSets(ListView listView)
@@ -124,13 +127,6 @@ namespace HardwareControl
                 subItems.AddRange(results[i].ToList());
                 listView.Items[i] = new ListViewItem(subItems.ToArray());
             }
-        }
-
-        private List<ModelingSet> GetResults()
-        {
-            List<ModelingSet> results = map.IOController.ProcessModeling(modelingSets);
-            RemoveInvertedOutputSets(results);
-            return results;
         }
 
         private void startButton_Click(object sender, EventArgs e)
