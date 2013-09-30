@@ -41,6 +41,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.switchesLabel = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.minDefectsListView = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -50,7 +51,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.switchesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.Lab3Tab.Location = new System.Drawing.Point(3, 2);
             this.Lab3Tab.Name = "Lab3Tab";
             this.Lab3Tab.SelectedIndex = 0;
-            this.Lab3Tab.Size = new System.Drawing.Size(1166, 497);
+            this.Lab3Tab.Size = new System.Drawing.Size(1234, 497);
             this.Lab3Tab.TabIndex = 0;
             // 
             // tabPage1
@@ -93,7 +93,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1158, 471);
+            this.tabPage1.Size = new System.Drawing.Size(1226, 471);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lab1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1158, 471);
+            this.tabPage2.Size = new System.Drawing.Size(1226, 471);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lab2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -193,10 +193,18 @@
             this.tabPage3.Controls.Add(this.pictureBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1158, 471);
+            this.tabPage3.Size = new System.Drawing.Size(1226, 471);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Lab3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // switchesLabel
+            // 
+            this.switchesLabel.AutoSize = true;
+            this.switchesLabel.Location = new System.Drawing.Point(167, 446);
+            this.switchesLabel.Name = "switchesLabel";
+            this.switchesLabel.Size = new System.Drawing.Size(0, 13);
+            this.switchesLabel.TabIndex = 5;
             // 
             // startButton
             // 
@@ -214,7 +222,7 @@
             this.minDefectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.minDefectsListView.Location = new System.Drawing.Point(5, 196);
             this.minDefectsListView.Name = "minDefectsListView";
-            this.minDefectsListView.Size = new System.Drawing.Size(1140, 243);
+            this.minDefectsListView.Size = new System.Drawing.Size(1218, 243);
             this.minDefectsListView.TabIndex = 3;
             this.minDefectsListView.UseCompatibleStateImageBehavior = false;
             this.minDefectsListView.View = System.Windows.Forms.View.Details;
@@ -224,7 +232,7 @@
             this.groupBox3.Controls.Add(this.defectsListView);
             this.groupBox3.Location = new System.Drawing.Point(327, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(824, 187);
+            this.groupBox3.Size = new System.Drawing.Size(896, 187);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Defects for All Sets";
@@ -240,7 +248,7 @@
             this.defectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.defectsListView.Location = new System.Drawing.Point(7, 14);
             this.defectsListView.Name = "defectsListView";
-            this.defectsListView.Size = new System.Drawing.Size(811, 167);
+            this.defectsListView.Size = new System.Drawing.Size(883, 167);
             this.defectsListView.TabIndex = 0;
             this.defectsListView.UseCompatibleStateImageBehavior = false;
             this.defectsListView.View = System.Windows.Forms.View.Details;
@@ -268,6 +276,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(5, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(316, 181);
@@ -275,19 +284,11 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // switchesLabel
-            // 
-            this.switchesLabel.AutoSize = true;
-            this.switchesLabel.Location = new System.Drawing.Point(167, 446);
-            this.switchesLabel.Name = "switchesLabel";
-            this.switchesLabel.Size = new System.Drawing.Size(0, 13);
-            this.switchesLabel.TabIndex = 5;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1170, 497);
+            this.ClientSize = new System.Drawing.Size(1249, 497);
             this.Controls.Add(this.Lab3Tab);
             this.Name = "Form1";
             this.Text = "Form1";

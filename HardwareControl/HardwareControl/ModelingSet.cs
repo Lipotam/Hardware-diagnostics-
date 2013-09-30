@@ -118,7 +118,7 @@ namespace HardwareControl
                             break;
                         }
                 }
-                str += name + "=" + value + "; ";
+                str += value;
             }
             return str;
         }

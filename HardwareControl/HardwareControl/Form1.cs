@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using HardwareControl.Elements;
@@ -42,8 +43,8 @@ namespace HardwareControl
             }
 
             //lab3 tab
-            minDefectsListView.Columns.Add("Modeling Set", 220);
-            int column = (minDefectsListView.Width - 292) / (map.Wires.Count * 2);
+            minDefectsListView.Columns.Add("Modeling Set", 75);
+            int column = (minDefectsListView.Width - 140) / (map.Wires.Count * 2);
             foreach (Wire wire in map.Wires)
             {
                 minDefectsListView.Columns.Add(wire.Name + "=0", column);
