@@ -53,6 +53,9 @@
     <Compile Include="Lab2\MultiDimensionalWayActivation.cs" />
     <Compile Include="Lab3\DefectSet.cs" />
     <Compile Include="Lab3\PowerConsumptionMinimization.cs" />
+    <Compile Include="Lab4\LFSR.cs" />
+    <Compile Include="Lab4\LFSRInfo.cs" />
+    <Compile Include="Lab4\SetComparer.cs" />
     <Compile Include="ModelingSetsComparer.cs" />
     <Compile Include="Services\ElementCreator.cs" />
     <Compile Include="Services\ElementFactory.cs" />

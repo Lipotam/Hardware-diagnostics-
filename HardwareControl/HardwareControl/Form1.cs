@@ -7,6 +7,7 @@ using HardwareControl.Elements;
 using HardwareControl.Lab1;
 using HardwareControl.Lab2;
 using HardwareControl.Lab3;
+using HardwareControl.Lab4;
 
 namespace HardwareControl
 {
@@ -15,6 +16,10 @@ namespace HardwareControl
         private ShemaMap map;
         private List<ModelingSet> modelingSets;
         private bool selectedType;
+
+        //lab4
+        private List<int> _polynom7 = new List<int>() { 7, 5, 3, 1 };
+        private LFSRInfo _info7;
 
         public Form1()
         {
@@ -108,7 +113,7 @@ namespace HardwareControl
                 }
             }
             SimulateAllSets(listView1);
-            
+
         }
 
         private List<int> GetSetsToRemove(List<ModelingSet> modelingSets)
@@ -182,6 +187,21 @@ namespace HardwareControl
                 minDefectsListView.Items.Add(new ListViewItem(items.ToArray()));
             }
             switchesLabel.Text += "; Switches after minimisation = " + switchesNum.ToString();
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            this._info7 = LFSR.GenerateAllSets(_polynom7, 7);
+            for (int i = 0; i < this._info7.Sets.Count; i++)
+            {
+                List<String> items = new List<string>() { i.ToString() };
+                for (int j = 0; j < this._info7.Sets[i].Count; j++)
+                {
+                    items.Add(this._info7.Sets[i][j] ? "1" : "0");
+                }
+                listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
+            }
+            textBoxInfo.Text = _info7.Info;
         }
     }
 }
