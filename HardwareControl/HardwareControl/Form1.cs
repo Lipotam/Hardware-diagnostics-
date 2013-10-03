@@ -54,6 +54,15 @@ namespace HardwareControl
                 minDefectsListView.Columns.Add(wire.Name + "=1", column);
             }
             minDefectsListView.Columns.Add("Switches", 60);
+
+            // lab4 tab
+
+            listViewPolynom1.Columns.Add("N", 35);
+            column = (listViewPolynom1.Width - 55) / 7;
+            for (int i = 0; i < 7; i++)
+            {
+                listViewPolynom1.Columns.Add("x" + (i + 1).ToString(), column);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

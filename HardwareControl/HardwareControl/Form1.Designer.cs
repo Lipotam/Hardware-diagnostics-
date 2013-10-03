@@ -51,6 +51,11 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.textBoxInfo = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.listViewPolynom1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,6 +66,8 @@
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // shemaPictureBox
@@ -79,6 +86,7 @@
             this.Lab3Tab.Controls.Add(this.tabPage1);
             this.Lab3Tab.Controls.Add(this.tabPage2);
             this.Lab3Tab.Controls.Add(this.tabPage3);
+            this.Lab3Tab.Controls.Add(this.tabPage4);
             this.Lab3Tab.Location = new System.Drawing.Point(3, 2);
             this.Lab3Tab.Name = "Lab3Tab";
             this.Lab3Tab.SelectedIndex = 0;
@@ -284,6 +292,56 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.buttonStart);
+            this.tabPage4.Controls.Add(this.textBoxInfo);
+            this.tabPage4.Controls.Add(this.groupBox4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1226, 471);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "lab4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Location = new System.Drawing.Point(546, 432);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.TabIndex = 10;
+            this.buttonStart.Text = "Start";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            // 
+            // textBoxInfo
+            // 
+            this.textBoxInfo.Location = new System.Drawing.Point(257, 12);
+            this.textBoxInfo.Multiline = true;
+            this.textBoxInfo.Name = "textBoxInfo";
+            this.textBoxInfo.ReadOnly = true;
+            this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxInfo.Size = new System.Drawing.Size(257, 443);
+            this.textBoxInfo.TabIndex = 9;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.listViewPolynom1);
+            this.groupBox4.Location = new System.Drawing.Point(15, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(236, 449);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "x^7 +x^5+x^3+x+1";
+            // 
+            // listViewPolynom1
+            // 
+            this.listViewPolynom1.Location = new System.Drawing.Point(6, 19);
+            this.listViewPolynom1.Name = "listViewPolynom1";
+            this.listViewPolynom1.Size = new System.Drawing.Size(224, 424);
+            this.listViewPolynom1.TabIndex = 4;
+            this.listViewPolynom1.UseCompatibleStateImageBehavior = false;
+            this.listViewPolynom1.View = System.Windows.Forms.View.Details;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +362,9 @@
             this.tabPage3.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -332,6 +393,11 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Label switchesLabel;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.TextBox textBoxInfo;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ListView listViewPolynom1;
 	}
 }
 
