@@ -301,7 +301,7 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1226, 471);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "lab4";
+            this.tabPage4.Text = "Lab4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // buttonStart
@@ -316,12 +316,12 @@
             // 
             // textBoxInfo
             // 
-            this.textBoxInfo.Location = new System.Drawing.Point(257, 12);
+            this.textBoxInfo.Location = new System.Drawing.Point(257, 31);
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ReadOnly = true;
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(257, 443);
+            this.textBoxInfo.Size = new System.Drawing.Size(257, 424);
             this.textBoxInfo.TabIndex = 9;
             // 
             // groupBox4

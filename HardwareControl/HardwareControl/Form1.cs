@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using HardwareControl.Elements;
@@ -18,8 +17,8 @@ namespace HardwareControl
         private bool selectedType;
 
         //lab4
-        private List<int> _polynom7 = new List<int>() { 7, 5, 3, 1 };
-        private LFSRInfo _info7;
+        private readonly List<int> polynom7 = new List<int> { 7, 5, 3, 1 };
+        private LFSRInfo info7;
 
         public Form1()
         {
@@ -191,17 +190,17 @@ namespace HardwareControl
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            this._info7 = LFSR.GenerateAllSets(_polynom7, 7);
-            for (int i = 0; i < this._info7.Sets.Count; i++)
+            this.info7 = LFSR.GenerateAllSets(this.polynom7, 7);
+            for (int i = 0; i < this.info7.Sets.Count; i++)
             {
                 List<String> items = new List<string>() { i.ToString() };
-                for (int j = 0; j < this._info7.Sets[i].Count; j++)
+                for (int j = 0; j < this.info7.Sets[i].Count; j++)
                 {
-                    items.Add(this._info7.Sets[i][j] ? "1" : "0");
+                    items.Add(this.info7.Sets[i][j] ? "1" : "0");
                 }
                 listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
             }
-            textBoxInfo.Text = _info7.Info;
+            textBoxInfo.Text = this.info7.Info;
         }
     }
 }
