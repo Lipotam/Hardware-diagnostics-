@@ -56,6 +56,7 @@
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.listViewPolynom1 = new System.Windows.Forms.ListView();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -68,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // shemaPictureBox
@@ -294,6 +296,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.pictureBox3);
             this.tabPage4.Controls.Add(this.buttonStart);
             this.tabPage4.Controls.Add(this.textBoxInfo);
             this.tabPage4.Controls.Add(this.groupBox4);
@@ -343,6 +346,15 @@
             this.listViewPolynom1.UseCompatibleStateImageBehavior = false;
             this.listViewPolynom1.View = System.Windows.Forms.View.Details;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(529, 31);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(623, 197);
+            this.pictureBox3.TabIndex = 11;
+            this.pictureBox3.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +378,7 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -399,6 +412,7 @@
         private System.Windows.Forms.TextBox textBoxInfo;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ListView listViewPolynom1;
+        private System.Windows.Forms.PictureBox pictureBox3;
 	}
 }
 

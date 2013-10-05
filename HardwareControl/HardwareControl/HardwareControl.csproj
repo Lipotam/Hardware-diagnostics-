@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\Lab1_schema.png" />
+    <Content Include="resources\Lab4_shema.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,28 +5,28 @@ namespace HardwareControl.Lab4
 {
     public class LFSRInfo
     {
-        private List<List<bool>> _sets;
-        private String _info;
+        private List<List<bool>> sets;
+        private readonly String info;
 
         public List<List<bool>> Sets
         {
             get
             {
-                return _sets;
+                return this.sets;
             }
         }
         public String Info
         {
             get
             {
-                return _info;
+                return this.info;
             }
         }
 
         public LFSRInfo(List<List<bool>> sets, String info)
         {
-            _sets = sets;
-            _info = info;
+            this.sets = sets;
+            this.info = info;
         }
     }
 }
