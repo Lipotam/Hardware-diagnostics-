@@ -52,11 +52,10 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.listViewPolynom1 = new System.Windows.Forms.ListView();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -68,8 +67,8 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // shemaPictureBox
@@ -298,7 +297,6 @@
             // 
             this.tabPage4.Controls.Add(this.pictureBox3);
             this.tabPage4.Controls.Add(this.buttonStart);
-            this.tabPage4.Controls.Add(this.textBoxInfo);
             this.tabPage4.Controls.Add(this.groupBox4);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -306,6 +304,15 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lab4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(529, 31);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(623, 197);
+            this.pictureBox3.TabIndex = 11;
+            this.pictureBox3.TabStop = false;
             // 
             // buttonStart
             // 
@@ -317,22 +324,12 @@
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // textBoxInfo
-            // 
-            this.textBoxInfo.Location = new System.Drawing.Point(257, 31);
-            this.textBoxInfo.Multiline = true;
-            this.textBoxInfo.Name = "textBoxInfo";
-            this.textBoxInfo.ReadOnly = true;
-            this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(257, 424);
-            this.textBoxInfo.TabIndex = 9;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.listViewPolynom1);
             this.groupBox4.Location = new System.Drawing.Point(15, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(236, 449);
+            this.groupBox4.Size = new System.Drawing.Size(494, 449);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "x^7 +x^5+x^3+x+1";
@@ -341,19 +338,10 @@
             // 
             this.listViewPolynom1.Location = new System.Drawing.Point(6, 19);
             this.listViewPolynom1.Name = "listViewPolynom1";
-            this.listViewPolynom1.Size = new System.Drawing.Size(224, 424);
+            this.listViewPolynom1.Size = new System.Drawing.Size(479, 424);
             this.listViewPolynom1.TabIndex = 4;
             this.listViewPolynom1.UseCompatibleStateImageBehavior = false;
             this.listViewPolynom1.View = System.Windows.Forms.View.Details;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(529, 31);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(623, 197);
-            this.pictureBox3.TabIndex = 11;
-            this.pictureBox3.TabStop = false;
             // 
             // Form1
             // 
@@ -376,9 +364,8 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -409,7 +396,6 @@
         private System.Windows.Forms.Label switchesLabel;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.TextBox textBoxInfo;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ListView listViewPolynom1;
         private System.Windows.Forms.PictureBox pictureBox3;

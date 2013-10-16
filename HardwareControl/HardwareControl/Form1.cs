@@ -19,6 +19,7 @@ namespace HardwareControl
         //lab4
         private readonly List<int> polynom7 = new List<int> { 7, 5, 3, 1 };
         private LFSRInfo info7;
+        private List<string> minimalDefectList;
 
         public Form1()
         {
@@ -60,19 +61,18 @@ namespace HardwareControl
             minDefectsListView.Columns.Add("Switches", 60);
 
             // lab4 tab
-
-            listViewPolynom1.Columns.Add("N", 35);
-            column = (listViewPolynom1.Width - 55) / 7;
-            for (int i = 0; i < 7; i++)
-            {
-                listViewPolynom1.Columns.Add("x" + (i + 1).ToString(), column);
-            }
+            column = (listViewPolynom1.Width - 55) / 3;
+            listViewPolynom1.Columns.Add("N", column);
+            listViewPolynom1.Columns.Add("x", column);
+            listViewPolynom1.Columns.Add("Match", column);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GenerateTestsDialog dialog = new GenerateTestsDialog();
-            dialog.WireNames = this.map.GetWiresNames();
+            GenerateTestsDialog dialog = new GenerateTestsDialog
+                {
+                    WireNames = this.map.GetWiresNames()
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 List<ModelingSet> tests = OneDimensionalWayActivation.FindTests(this.map.Wires[dialog.SelectedIndex], dialog.SelectedType, this.map.IOController);
@@ -90,8 +90,10 @@ namespace HardwareControl
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GenerateTestsDialog dialog = new GenerateTestsDialog();
-            dialog.WireNames = this.map.GetWiresNames();
+            GenerateTestsDialog dialog = new GenerateTestsDialog
+                {
+                    WireNames = this.map.GetWiresNames()
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 selectedType = dialog.SelectedType;
@@ -190,17 +192,31 @@ namespace HardwareControl
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            // lab3 part
+            List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(map);
+            List<DefectSet> minimalDefectSets = PowerConsumptionMinimization.MinimalDefectSets(allDefectSets);
+            minimalDefectList = new List<string>();
+            foreach (var minimalDefectSet in minimalDefectSets)
+            {
+                minimalDefectList.Add(minimalDefectSet.ModelingSet.ToString());
+            }
+            // lab3 part
+
             this.info7 = LFSR.GenerateAllSets(this.polynom7, 7);
             for (int i = 0; i < this.info7.Sets.Count; i++)
             {
-                List<String> items = new List<string>() { i.ToString() };
+                string fullSetString = string.Empty;
                 for (int j = 0; j < this.info7.Sets[i].Count; j++)
                 {
-                    items.Add(this.info7.Sets[i][j] ? "1" : "0");
+                    fullSetString += this.info7.Sets[i][j] ? "1" : "0";
                 }
+
+                var a = minimalDefectList.FirstOrDefault(x => x == fullSetString);
+                string match = a != null ? this.minimalDefectList.IndexOf(a).ToString() : string.Empty;
+
+                List<String> items = new List<string>() { i.ToString(), fullSetString, match };
                 listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
             }
-            textBoxInfo.Text = this.info7.Info;
         }
     }
 }
