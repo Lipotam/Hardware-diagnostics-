@@ -20,6 +20,7 @@ namespace HardwareControl
         private readonly List<int> polynom7 = new List<int> { 7, 5, 3, 1 };
         private LFSRInfo info7;
         private List<string> minimalDefectList;
+        private List<int> LSFR_Match_List;
 
         public Form1()
         {
@@ -201,7 +202,7 @@ namespace HardwareControl
                 minimalDefectList.Add(minimalDefectSet.ModelingSet.ToString());
             }
             // lab3 part
-
+            this.LSFR_Match_List = new List<int>();
             this.info7 = LFSR.GenerateAllSets(this.polynom7, 7);
             for (int i = 0; i < this.info7.Sets.Count; i++)
             {
@@ -211,11 +212,34 @@ namespace HardwareControl
                     fullSetString += this.info7.Sets[i][j] ? "1" : "0";
                 }
 
-                var a = minimalDefectList.FirstOrDefault(x => x == fullSetString);
-                string match = a != null ? this.minimalDefectList.IndexOf(a).ToString() : string.Empty;
+                var matchedMinimalDefect = minimalDefectList.FirstOrDefault(x => x == fullSetString);
 
-                List<String> items = new List<string>() { i.ToString(), fullSetString, match };
+                string match = matchedMinimalDefect != null ? this.minimalDefectList.IndexOf(matchedMinimalDefect).ToString() : string.Empty;
+
+                this.LSFR_Match_List.Add(matchedMinimalDefect != null ? minimalDefectList.IndexOf(matchedMinimalDefect) + 1 : 0);
+                List<String> items = new List<string> { i.ToString(), fullSetString, match };
                 listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
+            }
+
+            int size = 0, index = 0;
+            int[] valuesCount = new int[minimalDefectSets.Count + 1];
+            foreach (var item in this.LSFR_Match_List)
+            {
+                size++;
+                valuesCount[item]++;
+                if (valuesCount[item] > 1 && valuesCount[this.LSFR_Match_List.ToArray()[index]] > 1)
+                {
+                    valuesCount[item]--;
+                    index++;
+                    size--;
+                }
+                bool isFound = valuesCount.All(count => count >= 1);
+
+            if (isFound)
+                {
+                    this.lab4Result.Text = "Size = " + size + ". Index is " + index;
+                    return;
+                }
             }
         }
     }

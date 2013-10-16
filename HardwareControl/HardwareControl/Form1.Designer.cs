@@ -52,6 +52,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lab4Result = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -295,6 +297,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.lab4Result);
+            this.tabPage4.Controls.Add(this.label1);
             this.tabPage4.Controls.Add(this.pictureBox3);
             this.tabPage4.Controls.Add(this.buttonStart);
             this.tabPage4.Controls.Add(this.groupBox4);
@@ -304,6 +308,23 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lab4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // lab4Result
+            // 
+            this.lab4Result.AutoSize = true;
+            this.lab4Result.Location = new System.Drawing.Point(729, 437);
+            this.lab4Result.Name = "lab4Result";
+            this.lab4Result.Size = new System.Drawing.Size(0, 13);
+            this.lab4Result.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(656, 437);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Result: ";
             // 
             // pictureBox3
             // 
@@ -364,6 +385,7 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -399,6 +421,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ListView listViewPolynom1;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lab4Result;
+        private System.Windows.Forms.Label label1;
 	}
 }
 
