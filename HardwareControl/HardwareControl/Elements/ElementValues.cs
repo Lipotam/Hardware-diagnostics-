@@ -1,10 +1,10 @@
 ﻿namespace HardwareControl.Elements
 {
-    internal enum ElementsValues
-    {
-        True,
-        False,
-        Undefined,
-        Unset
-    }
+	public enum ElementsValues
+	{
+		True,
+		False,
+		Undefined,
+		Unset
+	}
 }

@@ -245,7 +245,13 @@ namespace HardwareControl
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-
+			Dictionary<String, List<int>> polynoms = LFSR.ChechAllCAPolynoms(9, map, this.polynom7);
+			List<String> keys = polynoms.Keys.ToList();
+			foreach (String key in keys)
+			{
+				List<String> items = new List<string>() { key, (polynoms[key][0] * 100.0 / (Math.Pow(2, 7) - 1)).ToString(), (polynoms[key][1] - 1).ToString() };
+				listViewLFSR.Items.Add(new ListViewItem(items.ToArray()));
+			}
 		}
     }
 }

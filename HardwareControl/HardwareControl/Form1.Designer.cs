@@ -59,12 +59,12 @@
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.listViewPolynom1 = new System.Windows.Forms.ListView();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.pictureBox = new System.Windows.Forms.PictureBox();
+			this.button3 = new System.Windows.Forms.Button();
 			this.listViewLFSR = new System.Windows.Forms.ListView();
 			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.button3 = new System.Windows.Forms.Button();
+			this.pictureBox = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
 			this.Lab3Tab.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -386,15 +386,15 @@
 			this.tabPage5.Text = "Lab5";
 			this.tabPage5.UseVisualStyleBackColor = true;
 			// 
-			// pictureBox
+			// button3
 			// 
-			this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
-			this.pictureBox.Location = new System.Drawing.Point(5, 3);
-			this.pictureBox.Name = "pictureBox";
-			this.pictureBox.Size = new System.Drawing.Size(787, 436);
-			this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox.TabIndex = 3;
-			this.pictureBox.TabStop = false;
+			this.button3.Location = new System.Drawing.Point(5, 445);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.TabIndex = 5;
+			this.button3.Text = "Start";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// listViewLFSR
 			// 
@@ -402,9 +402,9 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7});
-			this.listViewLFSR.Location = new System.Drawing.Point(798, 3);
+			this.listViewLFSR.Location = new System.Drawing.Point(825, 3);
 			this.listViewLFSR.Name = "listViewLFSR";
-			this.listViewLFSR.Size = new System.Drawing.Size(411, 436);
+			this.listViewLFSR.Size = new System.Drawing.Size(384, 436);
 			this.listViewLFSR.TabIndex = 4;
 			this.listViewLFSR.UseCompatibleStateImageBehavior = false;
 			this.listViewLFSR.View = System.Windows.Forms.View.Details;
@@ -412,7 +412,7 @@
 			// columnHeader5
 			// 
 			this.columnHeader5.Text = "Polynom";
-			this.columnHeader5.Width = 441;
+			this.columnHeader5.Width = 230;
 			// 
 			// columnHeader6
 			// 
@@ -423,15 +423,15 @@
 			this.columnHeader7.Text = "Summaters";
 			this.columnHeader7.Width = 71;
 			// 
-			// button3
+			// pictureBox
 			// 
-			this.button3.Location = new System.Drawing.Point(5, 445);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 5;
-			this.button3.Text = "Start";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+			this.pictureBox.Location = new System.Drawing.Point(5, 3);
+			this.pictureBox.Name = "pictureBox";
+			this.pictureBox.Size = new System.Drawing.Size(814, 436);
+			this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox.TabIndex = 3;
+			this.pictureBox.TabStop = false;
 			// 
 			// Form1
 			// 
