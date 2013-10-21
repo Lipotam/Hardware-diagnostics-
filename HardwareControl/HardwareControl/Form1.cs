@@ -191,7 +191,7 @@ namespace HardwareControl
             switchesLabel.Text += "; Switches after minimisation = " + switchesNum.ToString();
         }
 
-        private void buttonStart_Click(object sender, EventArgs e)
+        private void Lab4_buttonStart_Click(object sender, EventArgs e)
         {
             // lab3 part
             List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(map);
@@ -242,5 +242,10 @@ namespace HardwareControl
                 }
             }
         }
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+
+		}
     }
 }
