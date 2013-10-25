@@ -7,6 +7,7 @@ using HardwareControl.Lab1;
 using HardwareControl.Lab2;
 using HardwareControl.Lab3;
 using HardwareControl.Lab4;
+using HardwareControl.Lab6;
 
 namespace HardwareControl
 {
@@ -22,9 +23,13 @@ namespace HardwareControl
         private List<string> minimalDefectList;
         private List<int> LSFR_Match_List;
 
+        //lab6
+        private List<bool> _signal;
+        private UCA UcaBase;
+
         public Form1()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,44 +38,46 @@ namespace HardwareControl
 
             if (this.map.Shema != null)
             {
-                shemaPictureBox.Image = this.map.Shema;
+                this.shemaPictureBox.Image = this.map.Shema;
             }
             this.modelingSets = new List<ModelingSet>();
-            int columnWidth = (testsListView.Width - 22) / (this.map.IOController.InputNames.Count + this.map.IOController.OutputNames.Count);
+            int columnWidth = (this.testsListView.Width - 22) / (this.map.IOController.InputNames.Count + this.map.IOController.OutputNames.Count);
             foreach (String name in this.map.IOController.InputNames)
             {
-                testsListView.Columns.Add(name, columnWidth);
-                listView1.Columns.Add(name, columnWidth);
+                this.testsListView.Columns.Add(name, columnWidth);
+                this.listView1.Columns.Add(name, columnWidth);
             }
             foreach (String name in this.map.IOController.OutputNames)
             {
-                testsListView.Columns.Add(name, columnWidth);
-                listView1.Columns.Add(name, columnWidth);
+                this.testsListView.Columns.Add(name, columnWidth);
+                this.listView1.Columns.Add(name, columnWidth);
             }
 
             //lab3 tab
-            minDefectsListView.Columns.Add("Modeling Set", 75);
-            int column = (minDefectsListView.Width - 140) / (map.Wires.Count * 2);
-            foreach (Wire wire in map.Wires)
+            this.minDefectsListView.Columns.Add("Modeling Set", 75);
+            int column = (this.minDefectsListView.Width - 140) / (this.map.Wires.Count * 2);
+            foreach (Wire wire in this.map.Wires)
             {
-                minDefectsListView.Columns.Add(wire.Name + "=0", column);
+                this.minDefectsListView.Columns.Add(wire.Name + "=0", column);
             }
-            foreach (Wire wire in map.Wires)
+            foreach (Wire wire in this.map.Wires)
             {
-                minDefectsListView.Columns.Add(wire.Name + "=1", column);
+                this.minDefectsListView.Columns.Add(wire.Name + "=1", column);
             }
-            minDefectsListView.Columns.Add("Switches", 60);
+            this.minDefectsListView.Columns.Add("Switches", 60);
 
             // lab4 tab
-            column = (listViewPolynom1.Width - 55) / 3;
-            listViewPolynom1.Columns.Add("N", column);
-            listViewPolynom1.Columns.Add("x", column);
-            listViewPolynom1.Columns.Add("Match", column);
-
+            column = (this.listViewPolynom1.Width - 55) / 3;
+            this.listViewPolynom1.Columns.Add("N", column);
+            this.listViewPolynom1.Columns.Add("x", column);
+            this.listViewPolynom1.Columns.Add("Match", column);
 
             // lab6
-            labelPlynom.Text = "Polynom: is";
-            labelLength.Text = "Length is";
+            this.UcaBase = new UCA(new List<int> { 8, 5, 3, 1 }, 50);
+            this._signal = UcaBase.GetSignal();
+            this.labelPlynom.Text = "Polynom: " + UcaBase.GetPolynom();
+            this.labelLength.Text = "Length: " + UcaBase.SignalLength;
+            this.textBoxSignal.Text = UCA.SignalToString(_signal);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -83,15 +90,15 @@ namespace HardwareControl
             {
                 List<ModelingSet> tests = OneDimensionalWayActivation.FindTests(this.map.Wires[dialog.SelectedIndex], dialog.SelectedType, this.map.IOController);
 
-                testsListView.Items.Clear();
+                this.testsListView.Items.Clear();
                 this.modelingSets.Clear();
                 foreach (ModelingSet test in tests)
                 {
-                    testsListView.Items.Add(new ListViewItem(test.ToList().ToArray()));
+                    this.testsListView.Items.Add(new ListViewItem(test.ToList().ToArray()));
                 }
                 this.modelingSets.AddRange(tests);
             }
-            SimulateAllSets(testsListView);
+            this.SimulateAllSets(this.testsListView);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -102,24 +109,24 @@ namespace HardwareControl
                 };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                selectedType = dialog.SelectedType;
-                List<ModelingSet> tests = MultiDimensionalWayActivation.FindTests(this.map.Wires[dialog.SelectedIndex], selectedType, this.map.GetWiresNames(), this.map);
+                this.selectedType = dialog.SelectedType;
+                List<ModelingSet> tests = MultiDimensionalWayActivation.FindTests(this.map.Wires[dialog.SelectedIndex], this.selectedType, this.map.GetWiresNames(), this.map);
 
-                listView1.Items.Clear();
+                this.listView1.Items.Clear();
                 this.modelingSets.Clear();
-                List<ModelingSet> results = map.IOController.ProcessModeling(tests);
-                List<int> setsToRemove = GetSetsToRemove(results);
+                List<ModelingSet> results = this.map.IOController.ProcessModeling(tests);
+                List<int> setsToRemove = this.GetSetsToRemove(results);
 
                 for (int i = 0; i < tests.Count; i++)
                 {
                     if (setsToRemove.All(s => s != i))
                     {
-                        listView1.Items.Add(new ListViewItem(tests[i].ToList().ToArray()));
-                        modelingSets.Add(tests[i]);
+                        this.listView1.Items.Add(new ListViewItem(tests[i].ToList().ToArray()));
+                        this.modelingSets.Add(tests[i]);
                     }
                 }
             }
-            SimulateAllSets(listView1);
+            this.SimulateAllSets(this.listView1);
 
         }
 
@@ -130,7 +137,7 @@ namespace HardwareControl
             {
                 string key = modelingSets[i].ElementNames[modelingSets[i].ElementNames.Count - 1];
                 ElementsValues value = modelingSets[i].GetValue(key);
-                if ((value == ElementsValues.False && selectedType) || (value == ElementsValues.True && !selectedType))
+                if ((value == ElementsValues.False && this.selectedType) || (value == ElementsValues.True && !this.selectedType))
                 {
                     setsToRemove.Add(i);
                 }
@@ -141,11 +148,11 @@ namespace HardwareControl
 
         private void SimulateAllSets(ListView listView)
         {
-            List<ModelingSet> results = map.IOController.ProcessModeling(modelingSets);
+            List<ModelingSet> results = this.map.IOController.ProcessModeling(this.modelingSets);
 
             for (int i = 0; i < results.Count; i++)
             {
-                List<String> subItems = new List<string>(modelingSets[i].ToList());
+                List<String> subItems = new List<string>(this.modelingSets[i].ToList());
                 subItems.AddRange(results[i].ToList());
                 listView.Items[i] = new ListViewItem(subItems.ToArray());
             }
@@ -153,9 +160,9 @@ namespace HardwareControl
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            defectsListView.Items.Clear();
-            minDefectsListView.Items.Clear();
-            List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(map);
+            this.defectsListView.Items.Clear();
+            this.minDefectsListView.Items.Clear();
+            List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(this.map);
             foreach (DefectSet defectSet in allDefectSets)
             {
                 List<String> items = new List<String>
@@ -165,7 +172,7 @@ namespace HardwareControl
                                              defectSet.ConstTrueDefects,
                                              defectSet.DefectsCount.ToString()
                                          };
-                defectsListView.Items.Add(new ListViewItem(items.ToArray()));
+                this.defectsListView.Items.Add(new ListViewItem(items.ToArray()));
             }
 
             int switchesNum = 0;
@@ -174,37 +181,37 @@ namespace HardwareControl
             {
                 switchesNum += minimalDefectSets[i].ModelingWires.SwitchingNumbers(minimalDefectSets[(i + 1) % minimalDefectSets.Count].ModelingWires);
             }
-            switchesLabel.Text = "Switches before minimisation = " + switchesNum.ToString();
+            this.switchesLabel.Text = "Switches before minimisation = " + switchesNum.ToString();
             minimalDefectSets = PowerConsumptionMinimization.MinimalPowerSequence(minimalDefectSets);
             switchesNum = 0;
             for (int i = 0; i < minimalDefectSets.Count; i++)
             {
                 List<String> items = new List<string> { minimalDefectSets[i].ModelingSet.ToString() };
-                foreach (Wire wire in map.Wires)
+                foreach (Wire wire in this.map.Wires)
                 {
                     items.Add(minimalDefectSets[i].IsDefectDetected(wire.Name, false) ? "+" : " ");
                 }
-                foreach (Wire wire in map.Wires)
+                foreach (Wire wire in this.map.Wires)
                 {
                     items.Add(minimalDefectSets[i].IsDefectDetected(wire.Name, true) ? "+" : " ");
                 }
                 int switches = minimalDefectSets[i].ModelingWires.SwitchingNumbers(minimalDefectSets[(i + 1) % minimalDefectSets.Count].ModelingWires);
                 switchesNum += switches;
                 items.Add(switches.ToString());
-                minDefectsListView.Items.Add(new ListViewItem(items.ToArray()));
+                this.minDefectsListView.Items.Add(new ListViewItem(items.ToArray()));
             }
-            switchesLabel.Text += "; Switches after minimisation = " + switchesNum.ToString();
+            this.switchesLabel.Text += "; Switches after minimisation = " + switchesNum.ToString();
         }
 
         private void Lab4_buttonStart_Click(object sender, EventArgs e)
         {
             // lab3 part
-            List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(map);
+            List<DefectSet> allDefectSets = PowerConsumptionMinimization.FindAllDefectSets(this.map);
             List<DefectSet> minimalDefectSets = PowerConsumptionMinimization.MinimalDefectSets(allDefectSets);
-            minimalDefectList = new List<string>();
+            this.minimalDefectList = new List<string>();
             foreach (var minimalDefectSet in minimalDefectSets)
             {
-                minimalDefectList.Add(minimalDefectSet.ModelingSet.ToString());
+                this.minimalDefectList.Add(minimalDefectSet.ModelingSet.ToString());
             }
             // lab3 part
             this.LSFR_Match_List = new List<int>();
@@ -217,13 +224,13 @@ namespace HardwareControl
                     fullSetString += this.info7.Sets[i][j] ? "1" : "0";
                 }
 
-                var matchedMinimalDefect = minimalDefectList.FirstOrDefault(x => x == fullSetString);
+                var matchedMinimalDefect = this.minimalDefectList.FirstOrDefault(x => x == fullSetString);
 
                 string match = matchedMinimalDefect != null ? this.minimalDefectList.IndexOf(matchedMinimalDefect).ToString() : string.Empty;
 
-                this.LSFR_Match_List.Add(matchedMinimalDefect != null ? minimalDefectList.IndexOf(matchedMinimalDefect) + 1 : 0);
+                this.LSFR_Match_List.Add(matchedMinimalDefect != null ? this.minimalDefectList.IndexOf(matchedMinimalDefect) + 1 : 0);
                 List<String> items = new List<string> { i.ToString(), fullSetString, match };
-                listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
+                this.listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
             }
 
             int size = 0, index = 0;
@@ -240,7 +247,7 @@ namespace HardwareControl
                 }
                 bool isFound = valuesCount.All(count => count >= 1);
 
-            if (isFound)
+                if (isFound)
                 {
                     this.lab4Result.Text = "Size = " + size + ". Index is " + index;
                     return;
@@ -248,15 +255,72 @@ namespace HardwareControl
             }
         }
 
-		private void button3_Click(object sender, EventArgs e)
-		{
-			Dictionary<String, List<int>> polynoms = LFSR.ChechAllCAPolynoms(9, map, this.polynom7);
-			List<String> keys = polynoms.Keys.ToList();
-			foreach (String key in keys)
-			{
-				List<String> items = new List<string>() { key, (polynoms[key][0] * 100.0 / (Math.Pow(2, 7) - 1)).ToString(), (polynoms[key][1] - 1).ToString() };
-				listViewLFSR.Items.Add(new ListViewItem(items.ToArray()));
-			}
-		}
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Dictionary<String, List<int>> polynoms = LFSR.ChechAllCAPolynoms(9, this.map, this.polynom7);
+            List<String> keys = polynoms.Keys.ToList();
+            foreach (String key in keys)
+            {
+                List<String> items = new List<string>() { key, (polynoms[key][0] * 100.0 / (Math.Pow(2, 7) - 1)).ToString(), (polynoms[key][1] - 1).ToString() };
+                this.listViewLFSR.Items.Add(new ListViewItem(items.ToArray()));
+            }
+        }
+
+        private void buttonStartLab6_Click(object sender, EventArgs e)
+        {
+            List<String> resUCA1 = this.UcaBase.GetAllSingleErrors(this._signal, false);
+            foreach (string str in resUCA1)
+            {
+                this.textBoxUCA1.Text += str + Environment.NewLine;
+            }
+
+            List<String> resMCA1 = this.UcaBase.GetAllSingleErrors(this._signal, true);
+            foreach (string str in resMCA1)
+            {
+                this.textBoxMCA1.Text += str + Environment.NewLine;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            List<String> resUCA4 = this.UcaBase.GetAllPockerErrors(this._signal, false);
+            foreach (string str in resUCA4)
+            {
+                this.textBoxUCA4.Text += str + Environment.NewLine;
+            }
+            List<String> resMCA4 = this.UcaBase.GetAllPockerErrors(this._signal, true);
+            foreach (string str in resMCA4)
+            {
+                this.textBoxMCA4.Text += str + Environment.NewLine;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            List<String> resUCA3 = this.UcaBase.GetAllTripleErrors(this._signal, false);
+            foreach (string str in resUCA3)
+            {
+                this.textBoxUCA3.Text += str + Environment.NewLine;
+            }
+            List<String> resMCA3 = this.UcaBase.GetAllTripleErrors(this._signal, true);
+            foreach (string str in resMCA3)
+            {
+                this.textBoxMCA3.Text += str + Environment.NewLine;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            List<String> resUCA2 = this.UcaBase.GetAllDoubleErrors(this._signal, false);
+            foreach (string str in resUCA2)
+            {
+                this.textBoxUCA2.Text += str + Environment.NewLine;
+            }
+            List<String> resMCA2 = this.UcaBase.GetAllDoubleErrors(this._signal, true);
+            foreach (string str in resMCA2)
+            {
+                this.textBoxMCA2.Text += str + Environment.NewLine;
+            }
+        }
     }
 }

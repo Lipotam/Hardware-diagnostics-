@@ -56,6 +56,7 @@
     <Compile Include="Lab4\LFSR.cs" />
     <Compile Include="Lab4\LFSRInfo.cs" />
     <Compile Include="Lab4\SetComparer.cs" />
+    <Compile Include="Lab6\UCA.cs" />
     <Compile Include="ModelingSetsComparer.cs" />
     <Compile Include="Services\ElementCreator.cs" />
     <Compile Include="Services\ElementFactory.cs" />

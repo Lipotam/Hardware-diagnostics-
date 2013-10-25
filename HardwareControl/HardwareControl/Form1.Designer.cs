@@ -66,6 +66,10 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.textBoxMCA4 = new System.Windows.Forms.TextBox();
+            this.textBoxMCA3 = new System.Windows.Forms.TextBox();
+            this.textBoxMCA2 = new System.Windows.Forms.TextBox();
+            this.textBoxMCA1 = new System.Windows.Forms.TextBox();
             this.textBoxUCA4 = new System.Windows.Forms.TextBox();
             this.labelLength = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -75,10 +79,9 @@
             this.textBoxSignal = new System.Windows.Forms.TextBox();
             this.labelPlynom = new System.Windows.Forms.Label();
             this.textBoxUCA1 = new System.Windows.Forms.TextBox();
-            this.textBoxMCA4 = new System.Windows.Forms.TextBox();
-            this.textBoxMCA3 = new System.Windows.Forms.TextBox();
-            this.textBoxMCA2 = new System.Windows.Forms.TextBox();
-            this.textBoxMCA1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -458,6 +461,9 @@
             this.tabPage6.Controls.Add(this.textBoxUCA4);
             this.tabPage6.Controls.Add(this.labelLength);
             this.tabPage6.Controls.Add(this.label2);
+            this.tabPage6.Controls.Add(this.button6);
+            this.tabPage6.Controls.Add(this.button5);
+            this.tabPage6.Controls.Add(this.button4);
             this.tabPage6.Controls.Add(this.buttonStartLab6);
             this.tabPage6.Controls.Add(this.textBoxUCA3);
             this.tabPage6.Controls.Add(this.textBoxUCA2);
@@ -471,13 +477,49 @@
             this.tabPage6.Text = "Lab6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // textBoxMCA4
+            // 
+            this.textBoxMCA4.Location = new System.Drawing.Point(380, 361);
+            this.textBoxMCA4.Multiline = true;
+            this.textBoxMCA4.Name = "textBoxMCA4";
+            this.textBoxMCA4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxMCA4.Size = new System.Drawing.Size(343, 84);
+            this.textBoxMCA4.TabIndex = 18;
+            // 
+            // textBoxMCA3
+            // 
+            this.textBoxMCA3.Location = new System.Drawing.Point(380, 282);
+            this.textBoxMCA3.Multiline = true;
+            this.textBoxMCA3.Name = "textBoxMCA3";
+            this.textBoxMCA3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxMCA3.Size = new System.Drawing.Size(343, 73);
+            this.textBoxMCA3.TabIndex = 17;
+            // 
+            // textBoxMCA2
+            // 
+            this.textBoxMCA2.Location = new System.Drawing.Point(380, 192);
+            this.textBoxMCA2.Multiline = true;
+            this.textBoxMCA2.Name = "textBoxMCA2";
+            this.textBoxMCA2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxMCA2.Size = new System.Drawing.Size(343, 84);
+            this.textBoxMCA2.TabIndex = 16;
+            // 
+            // textBoxMCA1
+            // 
+            this.textBoxMCA1.Location = new System.Drawing.Point(380, 88);
+            this.textBoxMCA1.Multiline = true;
+            this.textBoxMCA1.Name = "textBoxMCA1";
+            this.textBoxMCA1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxMCA1.Size = new System.Drawing.Size(343, 98);
+            this.textBoxMCA1.TabIndex = 15;
+            // 
             // textBoxUCA4
             // 
             this.textBoxUCA4.Location = new System.Drawing.Point(15, 361);
             this.textBoxUCA4.Multiline = true;
             this.textBoxUCA4.Name = "textBoxUCA4";
             this.textBoxUCA4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxUCA4.Size = new System.Drawing.Size(307, 84);
+            this.textBoxUCA4.Size = new System.Drawing.Size(345, 84);
             this.textBoxUCA4.TabIndex = 11;
             // 
             // labelLength
@@ -500,12 +542,13 @@
             // 
             // buttonStartLab6
             // 
-            this.buttonStartLab6.Location = new System.Drawing.Point(414, 39);
+            this.buttonStartLab6.Location = new System.Drawing.Point(763, 88);
             this.buttonStartLab6.Name = "buttonStartLab6";
             this.buttonStartLab6.Size = new System.Drawing.Size(100, 23);
             this.buttonStartLab6.TabIndex = 13;
-            this.buttonStartLab6.Text = "Start";
+            this.buttonStartLab6.Text = "one error";
             this.buttonStartLab6.UseVisualStyleBackColor = true;
+            this.buttonStartLab6.Click += new System.EventHandler(this.buttonStartLab6_Click);
             // 
             // textBoxUCA3
             // 
@@ -513,7 +556,7 @@
             this.textBoxUCA3.Multiline = true;
             this.textBoxUCA3.Name = "textBoxUCA3";
             this.textBoxUCA3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxUCA3.Size = new System.Drawing.Size(307, 73);
+            this.textBoxUCA3.Size = new System.Drawing.Size(345, 73);
             this.textBoxUCA3.TabIndex = 10;
             // 
             // textBoxUCA2
@@ -522,7 +565,7 @@
             this.textBoxUCA2.Multiline = true;
             this.textBoxUCA2.Name = "textBoxUCA2";
             this.textBoxUCA2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxUCA2.Size = new System.Drawing.Size(307, 84);
+            this.textBoxUCA2.Size = new System.Drawing.Size(345, 84);
             this.textBoxUCA2.TabIndex = 7;
             // 
             // textBoxSignal
@@ -547,44 +590,38 @@
             this.textBoxUCA1.Multiline = true;
             this.textBoxUCA1.Name = "textBoxUCA1";
             this.textBoxUCA1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxUCA1.Size = new System.Drawing.Size(307, 98);
+            this.textBoxUCA1.Size = new System.Drawing.Size(345, 98);
             this.textBoxUCA1.TabIndex = 6;
             // 
-            // textBoxMCA4
+            // button4
             // 
-            this.textBoxMCA4.Location = new System.Drawing.Point(328, 361);
-            this.textBoxMCA4.Multiline = true;
-            this.textBoxMCA4.Name = "textBoxMCA4";
-            this.textBoxMCA4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMCA4.Size = new System.Drawing.Size(343, 84);
-            this.textBoxMCA4.TabIndex = 18;
+            this.button4.Location = new System.Drawing.Point(763, 192);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 23);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "two errors";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // textBoxMCA3
+            // button5
             // 
-            this.textBoxMCA3.Location = new System.Drawing.Point(328, 282);
-            this.textBoxMCA3.Multiline = true;
-            this.textBoxMCA3.Name = "textBoxMCA3";
-            this.textBoxMCA3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMCA3.Size = new System.Drawing.Size(343, 73);
-            this.textBoxMCA3.TabIndex = 17;
+            this.button5.Location = new System.Drawing.Point(763, 282);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 23);
+            this.button5.TabIndex = 13;
+            this.button5.Text = "tree errors";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // textBoxMCA2
+            // button6
             // 
-            this.textBoxMCA2.Location = new System.Drawing.Point(328, 192);
-            this.textBoxMCA2.Multiline = true;
-            this.textBoxMCA2.Name = "textBoxMCA2";
-            this.textBoxMCA2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMCA2.Size = new System.Drawing.Size(343, 84);
-            this.textBoxMCA2.TabIndex = 16;
-            // 
-            // textBoxMCA1
-            // 
-            this.textBoxMCA1.Location = new System.Drawing.Point(328, 88);
-            this.textBoxMCA1.Multiline = true;
-            this.textBoxMCA1.Name = "textBoxMCA1";
-            this.textBoxMCA1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMCA1.Size = new System.Drawing.Size(343, 98);
-            this.textBoxMCA1.TabIndex = 15;
+            this.button6.Location = new System.Drawing.Point(763, 361);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(100, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "four errors";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
@@ -670,6 +707,9 @@
         private System.Windows.Forms.TextBox textBoxMCA3;
         private System.Windows.Forms.TextBox textBoxMCA2;
         private System.Windows.Forms.TextBox textBoxMCA1;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
 	}
 }
 
