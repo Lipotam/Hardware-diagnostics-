@@ -66,6 +66,11 @@ namespace HardwareControl
             listViewPolynom1.Columns.Add("N", column);
             listViewPolynom1.Columns.Add("x", column);
             listViewPolynom1.Columns.Add("Match", column);
+
+
+            // lab6
+            labelPlynom.Text = "Polynom: is";
+            labelLength.Text = "Length is";
         }
 
         private void button1_Click(object sender, EventArgs e)
