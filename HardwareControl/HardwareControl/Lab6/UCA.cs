@@ -10,6 +10,8 @@ namespace HardwareControl.Lab6
         private List<int> _polynom;
         private int _length;
 
+        public double Efficiency { get; set; }
+
         public UCA(List<int> polynomList, int signalLength)
         {
             _polynom = polynomList;
@@ -37,6 +39,7 @@ namespace HardwareControl.Lab6
 
         public List<String> GetAllSingleErrors(List<bool> signal, bool multiple)
         {
+            Efficiency = 0;
             List<String> result = new List<string>();
             String etalon = multiple ? ProcessMCA(signal) : ProcessUCA(signal);
             for (int i = 0; i < signal.Count; i++)
@@ -46,13 +49,16 @@ namespace HardwareControl.Lab6
                 if (etalon.Equals(multiple ? ProcessMCA(noisy) : ProcessUCA(noisy)))
                 {
                     result.Add(SignalToString(noisy));
+                    Efficiency++;
                 }
             }
+            Efficiency = Efficiency / signal.Count * 100;
             return result;
         }
 
         public List<String> GetAllDoubleErrors(List<bool> signal, bool multiple)
         {
+            Efficiency = 0;
             List<String> result = new List<string>();
             String etalon = multiple ? ProcessMCA(signal) : ProcessUCA(signal);
             for (int i = 0; i < signal.Count; i++)
@@ -65,14 +71,17 @@ namespace HardwareControl.Lab6
                     if (etalon.Equals(multiple ? ProcessMCA(noisy) : ProcessUCA(noisy)))
                     {
                         result.Add(SignalToString(noisy));
+                        Efficiency++;
                     }
                 }
             }
+            Efficiency = Efficiency / Math.Pow(signal.Count, 2) * 100;
             return result;
         }
 
         public List<String> GetAllTripleErrors(List<bool> signal, bool multiple)
         {
+            Efficiency = 0;
             List<String> result = new List<string>();
             String etalon = multiple ? ProcessMCA(signal) : ProcessUCA(signal);
             for (int i = 0; i < signal.Count; i++)
@@ -88,15 +97,18 @@ namespace HardwareControl.Lab6
                         if (etalon.Equals(multiple ? ProcessMCA(noisy) : ProcessUCA(noisy)))
                         {
                             result.Add(SignalToString(noisy));
+                            Efficiency++;
                         }
                     }
                 }
             }
+            Efficiency = Efficiency / Math.Pow(signal.Count, 3) * 100;
             return result;
         }
 
         public List<String> GetAllPockerErrors(List<bool> signal, bool multiple)
         {
+            Efficiency = 0;
             List<String> result = new List<string>();
             String etalon = multiple ? ProcessMCA(signal) : ProcessUCA(signal);
             for (int i = 0; i < signal.Count; i++)
@@ -116,11 +128,13 @@ namespace HardwareControl.Lab6
                             if (etalon.Equals(multiple ? ProcessMCA(noisy) : ProcessUCA(noisy)))
                             {
                                 result.Add(SignalToString(noisy));
+                                Efficiency++;
                             }
                         }
                     }
                 }
             }
+            Efficiency = Efficiency / Math.Pow(signal.Count, 4) * 100;
             return result;
         }
 
