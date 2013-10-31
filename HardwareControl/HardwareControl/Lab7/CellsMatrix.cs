@@ -226,7 +226,6 @@ namespace HardwareControl.Lab7
             }
         }
 
-
         public void AlgoritmB()
         {
             List<MarchTestQuery> testQueries = new List<MarchTestQuery>

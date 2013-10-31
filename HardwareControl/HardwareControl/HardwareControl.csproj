@@ -73,6 +73,8 @@
     <Compile Include="Lab4\SetComparer.cs" />
     <Compile Include="Lab6\UCA.cs" />
     <Compile Include="Lab7\CellsMatrix.cs" />
+    <Compile Include="Lab7\MarchTestQuery.cs" />
+    <Compile Include="Lab7\MarshTestFunctions.cs" />
     <Compile Include="Lab7\MemCell.cs" />
     <Compile Include="Lab7\MemErrorTypes.cs" />
     <Compile Include="ModelingSetsComparer.cs" />
