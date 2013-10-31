@@ -9,10 +9,12 @@ namespace HardwareControl.Lab7
     {
         private List<MemCell> cells;
         private int xDimention, yDimention;
+        private bool[] testPass;
 
         public CellsMatrix(int x = 10, int y = 10)
         {
             cells = new List<MemCell>();
+
             xDimention = x;
             yDimention = y;
         }
@@ -33,12 +35,12 @@ namespace HardwareControl.Lab7
             }
         }
 
-        public void SetFalse(int index)
+        private void SetFalse(int index)
         {
             SetLogic(index, ElementsValues.False);
         }
 
-        public void SetTrue(int index)
+        private void SetTrue(int index)
         {
             SetLogic(index, ElementsValues.True);
         }
@@ -123,7 +125,7 @@ namespace HardwareControl.Lab7
             }
         }
 
-        public bool IsEqualToFalse(int index)
+        private bool IsEqualToFalse(int index)
         {
             if (cells[index].CellValue == ElementsValues.False)
             {
@@ -134,7 +136,8 @@ namespace HardwareControl.Lab7
                 return false;
             }
         }
-        public bool IsEqualToTrue(int index)
+
+        private bool IsEqualToTrue(int index)
         {
             if (cells[index].CellValue == ElementsValues.True)
             {
@@ -155,6 +158,64 @@ namespace HardwareControl.Lab7
             if (cells[index].CellValue == ElementsValues.True)
             {
                 cells[index].CellValue = ElementsValues.False;
+            }
+        }
+
+        private void RunMarshTest(List<MarchTestQuery> marchTestQueries)
+        {
+            testPass = new bool[cells.Count()];
+            for (int i = 0; i < cells.Count; i++)
+            {
+                testPass[i] = true;
+            }
+
+            foreach (var testQuery in marchTestQueries)
+            {
+                if (testQuery.AddressIncrement)
+                {
+                    for (int i = 0; i < cells.Count; i++)
+                    {
+                        DoQuery(i, testQuery.Functions);
+                    }
+                }
+                else
+                {
+                    for (int i = cells.Count; i > 0; i++)
+                    {
+                        DoQuery(i, testQuery.Functions);
+                    }
+                }
+            }
+        }
+
+        private void DoQuery(int index, List<MarshTestFunctions> testFunctions)
+        {
+            foreach (var marshTestFunction in testFunctions)
+            {
+                switch (marshTestFunction)
+                {
+                    case MarshTestFunctions.ReadFalse:
+                        if (testPass[index])
+                        {
+                            testPass[index] = IsEqualToFalse(index);
+                        }
+                        break;
+                    case MarshTestFunctions.ReadTrue:
+
+                        if (testPass[index])
+                        {
+                            testPass[index] = IsEqualToTrue(index);
+                        }
+                        break;
+                    case MarshTestFunctions.WriteFalse:
+                        SetFalse(index);
+                        break;
+                    case MarshTestFunctions.WriteTrue:
+                        SetTrue(index);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
 
