@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using HardwareControl.Elements;
 
 namespace HardwareControl.Lab7
@@ -34,7 +33,6 @@ namespace HardwareControl.Lab7
             }
         }
 
-
         public void SetFalse(int index)
         {
             SetLogic(index, ElementsValues.False);
@@ -61,6 +59,7 @@ namespace HardwareControl.Lab7
                 case MemErrorTypes.SAF_1:
                     break;
                 case MemErrorTypes.AF_multiple_cells_on_address:
+                    cells[index].CellValue = inputValue;
                     foreach (var memCell in cells[index].CellAddresses)
                     {
                         SetLogic(memCell, inputValue);
@@ -68,38 +67,25 @@ namespace HardwareControl.Lab7
                     break;
                 case MemErrorTypes.CFin_aggressor_addressLess_up:
                 case MemErrorTypes.CFin_aggressor_addressMore_up:
+                    cells[index].CellValue = inputValue;
                     if (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True)
                     {
-                        if (cells[cells[index].CellAddresses.First()].CellValue == ElementsValues.False)
-                        {
-                            cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.True;
-                        }
-                        if (cells[cells[index].CellAddresses.First()].CellValue == ElementsValues.True)
-                        {
-                            cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.False;
-                        }
+                        RevertValue(cells[index].CellAddresses.First());
                     }
-                    cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.CFin_aggressor_addressLess_down:
                 case MemErrorTypes.CFin_aggressor_addressMore_down:
+                    cells[index].CellValue = inputValue;
                     if (cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False)
                     {
-                        if (cells[cells[index].CellAddresses.First()].CellValue == ElementsValues.False)
-                        {
-                            cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.True;
-                        }
-                        if (cells[cells[index].CellAddresses.First()].CellValue == ElementsValues.True)
-                        {
-                            cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.False;
-                        }
+                        RevertValue(cells[index].CellAddresses.First());
                     }
-                    cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.CFid_aggressor_addressLess_up_set_false:
                 case MemErrorTypes.CFid_aggressor_addressMore_up_set_false:
                 case MemErrorTypes.CFid_aggressor_addressMore_down_set_false:
                 case MemErrorTypes.CFid_aggressor_addressLess_down_set_false:
+                    cells[index].CellValue = inputValue;
                     if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
                     {
                         cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.False;
@@ -109,9 +95,27 @@ namespace HardwareControl.Lab7
                 case MemErrorTypes.CFid_aggressor_addressMore_up_set_true:
                 case MemErrorTypes.CFid_aggressor_addressMore_down_set_true:
                 case MemErrorTypes.CFid_aggressor_addressLess_down_set_true:
+                    cells[index].CellValue = inputValue;
                     if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
                     {
                         cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.True;
+                    }
+                    break;
+                case MemErrorTypes.ANPSFK3:
+                    cells[index].CellValue = inputValue;
+                    if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
+                    {
+                        RevertValue(cells[index].CellAddresses.First());
+                    }
+                    break;
+                case MemErrorTypes.PNPSFK3:
+                    cells[index].CellValue = inputValue;
+                    if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
+                    {
+                        if (cells[cells[index].CellAddresses.First() + 1].CellValue == ElementsValues.True && cells[cells[index].CellAddresses.First() - 1].CellValue == ElementsValues.True)
+                        {
+                            RevertValue(cells[index].CellAddresses.First());
+                        }
                     }
                     break;
                 default:
@@ -141,5 +145,18 @@ namespace HardwareControl.Lab7
                 return false;
             }
         }
+
+        private void RevertValue(int index)
+        {
+            if (cells[index].CellValue == ElementsValues.False)
+            {
+                cells[index].CellValue = ElementsValues.True;
+            }
+            if (cells[index].CellValue == ElementsValues.True)
+            {
+                cells[index].CellValue = ElementsValues.False;
+            }
+        }
+
     }
 }

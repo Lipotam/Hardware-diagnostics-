@@ -24,6 +24,9 @@
         CFid_aggressor_addressLess_down_set_true,
         CFid_aggressor_addressMore_up_set_true,
         CFid_aggressor_addressMore_down_set_true,
-        CFid_victiom
+        CFid_victiom,
+
+        PNPSFK3,
+        ANPSFK3
     };
 }
