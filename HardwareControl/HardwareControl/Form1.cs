@@ -273,12 +273,14 @@ namespace HardwareControl
             {
                 this.textBoxUCA1.Text += str + Environment.NewLine;
             }
+            efficiencyBoxUCA1.Text = (100 -UcaBase.Efficiency).ToString();
 
             List<String> resMCA1 = this.UcaBase.GetAllSingleErrors(this._signal, true);
             foreach (string str in resMCA1)
             {
                 this.textBoxMCA1.Text += str + Environment.NewLine;
             }
+            efficiencyBoxMCA1.Text = (100 - UcaBase.Efficiency).ToString();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -288,11 +290,14 @@ namespace HardwareControl
             {
                 this.textBoxUCA4.Text += str + Environment.NewLine;
             }
+            efficiencyBoxUCA4.Text = (100 - UcaBase.Efficiency).ToString();
+
             List<String> resMCA4 = this.UcaBase.GetAllPockerErrors(this._signal, true);
             foreach (string str in resMCA4)
             {
                 this.textBoxMCA4.Text += str + Environment.NewLine;
             }
+            efficiencyBoxMCA4.Text = (100 - UcaBase.Efficiency).ToString();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -302,11 +307,14 @@ namespace HardwareControl
             {
                 this.textBoxUCA3.Text += str + Environment.NewLine;
             }
+            efficiencyBoxUCA3.Text = (100 -UcaBase.Efficiency).ToString();
+
             List<String> resMCA3 = this.UcaBase.GetAllTripleErrors(this._signal, true);
             foreach (string str in resMCA3)
             {
                 this.textBoxMCA3.Text += str + Environment.NewLine;
             }
+            efficiencyBoxMCA3.Text = (100 -UcaBase.Efficiency).ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -316,11 +324,14 @@ namespace HardwareControl
             {
                 this.textBoxUCA2.Text += str + Environment.NewLine;
             }
+            efficiencyBoxUCA2.Text = (100 -UcaBase.Efficiency).ToString();
+
             List<String> resMCA2 = this.UcaBase.GetAllDoubleErrors(this._signal, true);
             foreach (string str in resMCA2)
             {
                 this.textBoxMCA2.Text += str + Environment.NewLine;
             }
+            efficiencyBoxMCA2.Text = (100 -UcaBase.Efficiency).ToString();
         }
     }
 }
