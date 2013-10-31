@@ -10,6 +10,7 @@ namespace HardwareControl.Lab7
         private List<MemCell> cells;
         private int xDimention, yDimention;
         private bool[] testPass;
+        private List<string> resultMessages;
 
         public CellsMatrix(int x = 10, int y = 10)
         {
@@ -17,6 +18,13 @@ namespace HardwareControl.Lab7
 
             xDimention = x;
             yDimention = y;
+
+            resultMessages = new List<string>();
+
+            for (int i = 0; i < cells.Count; i++)
+            {
+                resultMessages.Add("");
+            }
         }
 
         public int Width
@@ -201,7 +209,6 @@ namespace HardwareControl.Lab7
                         }
                         break;
                     case MarshTestFunctions.ReadTrue:
-
                         if (testPass[index])
                         {
                             testPass[index] = IsEqualToTrue(index);
@@ -214,10 +221,158 @@ namespace HardwareControl.Lab7
                         SetTrue(index);
                         break;
                     default:
-                        throw new NotImplementedException();
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
 
+
+        public void AlgoritmB()
+        {
+            List<MarchTestQuery> testQueries = new List<MarchTestQuery>
+                {
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.WriteFalse
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.WriteTrue
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = false,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.WriteFalse
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = false,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse
+                                                }
+                            }
+                };
+
+            RunMarshTest(testQueries);
+
+            for (int i = 0; i < cells.Count; i++)
+            {
+                resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
+            }
+        }
+
+        public void MarshPSAlgoritm()
+        {
+            List<MarchTestQuery> testQueries = new List<MarchTestQuery>
+                {
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.WriteFalse
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.ReadTrue
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = true,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse
+                                                }
+                            },
+                        new MarchTestQuery
+                            {
+                                    AddressIncrement = false,
+                                    Functions =
+                                            new List<MarshTestFunctions>
+                                                {
+                                                        MarshTestFunctions.ReadFalse,
+                                                        MarshTestFunctions.WriteTrue,
+                                                        MarshTestFunctions.ReadTrue,
+                                                        MarshTestFunctions.WriteFalse,
+                                                        MarshTestFunctions.ReadFalse
+                                                }
+                            }
+                };
+
+            RunMarshTest(testQueries);
+
+            for (int i = 0; i < cells.Count; i++)
+            {
+                resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
+            }
+        }
     }
 }
