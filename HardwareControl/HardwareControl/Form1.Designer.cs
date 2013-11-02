@@ -66,6 +66,18 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.efficiencyBoxMCA4 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.efficiencyBoxMCA3 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.efficiencyBoxMCA2 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.efficiencyBoxMCA1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.efficiencyBoxUCA4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.efficiencyBoxUCA3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.efficiencyBoxUCA2 = new System.Windows.Forms.TextBox();
             this.efficiencyLabelUCA1 = new System.Windows.Forms.Label();
@@ -86,18 +98,13 @@
             this.textBoxSignal = new System.Windows.Forms.TextBox();
             this.labelPlynom = new System.Windows.Forms.Label();
             this.textBoxUCA1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.efficiencyBoxUCA3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.efficiencyBoxUCA4 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.efficiencyBoxMCA4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.efficiencyBoxMCA3 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.efficiencyBoxMCA2 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.efficiencyBoxMCA1 = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -114,6 +121,9 @@
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // shemaPictureBox
@@ -135,6 +145,7 @@
             this.Lab3Tab.Controls.Add(this.tabPage4);
             this.Lab3Tab.Controls.Add(this.tabPage5);
             this.Lab3Tab.Controls.Add(this.tabPage6);
+            this.Lab3Tab.Controls.Add(this.tabPage7);
             this.Lab3Tab.Location = new System.Drawing.Point(3, 2);
             this.Lab3Tab.Name = "Lab3Tab";
             this.Lab3Tab.SelectedIndex = 0;
@@ -509,6 +520,102 @@
             this.tabPage6.Text = "Lab6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(915, 387);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 13);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "Efficiency";
+            // 
+            // efficiencyBoxMCA4
+            // 
+            this.efficiencyBoxMCA4.Location = new System.Drawing.Point(915, 405);
+            this.efficiencyBoxMCA4.Name = "efficiencyBoxMCA4";
+            this.efficiencyBoxMCA4.Size = new System.Drawing.Size(143, 20);
+            this.efficiencyBoxMCA4.TabIndex = 33;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(915, 294);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Efficiency";
+            // 
+            // efficiencyBoxMCA3
+            // 
+            this.efficiencyBoxMCA3.Location = new System.Drawing.Point(915, 312);
+            this.efficiencyBoxMCA3.Name = "efficiencyBoxMCA3";
+            this.efficiencyBoxMCA3.Size = new System.Drawing.Size(143, 20);
+            this.efficiencyBoxMCA3.TabIndex = 31;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(915, 206);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Efficiency";
+            // 
+            // efficiencyBoxMCA2
+            // 
+            this.efficiencyBoxMCA2.Location = new System.Drawing.Point(915, 224);
+            this.efficiencyBoxMCA2.Name = "efficiencyBoxMCA2";
+            this.efficiencyBoxMCA2.Size = new System.Drawing.Size(143, 20);
+            this.efficiencyBoxMCA2.TabIndex = 29;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(915, 103);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Efficiency";
+            // 
+            // efficiencyBoxMCA1
+            // 
+            this.efficiencyBoxMCA1.Location = new System.Drawing.Point(915, 121);
+            this.efficiencyBoxMCA1.Name = "efficiencyBoxMCA1";
+            this.efficiencyBoxMCA1.Size = new System.Drawing.Size(143, 20);
+            this.efficiencyBoxMCA1.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(377, 387);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Efficiency";
+            // 
+            // efficiencyBoxUCA4
+            // 
+            this.efficiencyBoxUCA4.Location = new System.Drawing.Point(377, 405);
+            this.efficiencyBoxUCA4.Name = "efficiencyBoxUCA4";
+            this.efficiencyBoxUCA4.Size = new System.Drawing.Size(143, 20);
+            this.efficiencyBoxUCA4.TabIndex = 25;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(377, 294);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Efficiency";
+            // 
+            // efficiencyBoxUCA3
+            // 
+            this.efficiencyBoxUCA3.Location = new System.Drawing.Point(377, 312);
+            this.efficiencyBoxUCA3.Name = "efficiencyBoxUCA3";
+            this.efficiencyBoxUCA3.Size = new System.Drawing.Size(143, 20);
+            this.efficiencyBoxUCA3.TabIndex = 23;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -687,101 +794,81 @@
             this.textBoxUCA1.Size = new System.Drawing.Size(345, 98);
             this.textBoxUCA1.TabIndex = 6;
             // 
-            // label4
+            // tabPage7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(377, 294);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Efficiency";
+            this.tabPage7.Controls.Add(this.textBox1);
+            this.tabPage7.Controls.Add(this.button7);
+            this.tabPage7.Controls.Add(this.label11);
+            this.tabPage7.Controls.Add(this.label10);
+            this.tabPage7.Controls.Add(this.numericUpDown2);
+            this.tabPage7.Controls.Add(this.numericUpDown1);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1226, 471);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Lab7";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // efficiencyBoxUCA3
+            // numericUpDown1
             // 
-            this.efficiencyBoxUCA3.Location = new System.Drawing.Point(377, 312);
-            this.efficiencyBoxUCA3.Name = "efficiencyBoxUCA3";
-            this.efficiencyBoxUCA3.Size = new System.Drawing.Size(143, 20);
-            this.efficiencyBoxUCA3.TabIndex = 23;
+            this.numericUpDown1.Location = new System.Drawing.Point(91, 28);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 0;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
-            // label5
+            // numericUpDown2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(377, 387);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Efficiency";
+            this.numericUpDown2.Location = new System.Drawing.Point(91, 54);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown2.TabIndex = 0;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
-            // efficiencyBoxUCA4
+            // label10
             // 
-            this.efficiencyBoxUCA4.Location = new System.Drawing.Point(377, 405);
-            this.efficiencyBoxUCA4.Name = "efficiencyBoxUCA4";
-            this.efficiencyBoxUCA4.Size = new System.Drawing.Size(143, 20);
-            this.efficiencyBoxUCA4.TabIndex = 25;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(4, 34);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "xDimention";
             // 
-            // label6
+            // label11
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(915, 387);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 13);
-            this.label6.TabIndex = 34;
-            this.label6.Text = "Efficiency";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(8, 59);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "yDimention";
             // 
-            // efficiencyBoxMCA4
+            // button7
             // 
-            this.efficiencyBoxMCA4.Location = new System.Drawing.Point(915, 405);
-            this.efficiencyBoxMCA4.Name = "efficiencyBoxMCA4";
-            this.efficiencyBoxMCA4.Size = new System.Drawing.Size(143, 20);
-            this.efficiencyBoxMCA4.TabIndex = 33;
+            this.button7.Location = new System.Drawing.Point(11, 110);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(133, 23);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "Create and Test";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // label7
+            // textBox1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(915, 294);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 13);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Efficiency";
-            // 
-            // efficiencyBoxMCA3
-            // 
-            this.efficiencyBoxMCA3.Location = new System.Drawing.Point(915, 312);
-            this.efficiencyBoxMCA3.Name = "efficiencyBoxMCA3";
-            this.efficiencyBoxMCA3.Size = new System.Drawing.Size(143, 20);
-            this.efficiencyBoxMCA3.TabIndex = 31;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(915, 206);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 13);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "Efficiency";
-            // 
-            // efficiencyBoxMCA2
-            // 
-            this.efficiencyBoxMCA2.Location = new System.Drawing.Point(915, 224);
-            this.efficiencyBoxMCA2.Name = "efficiencyBoxMCA2";
-            this.efficiencyBoxMCA2.Size = new System.Drawing.Size(143, 20);
-            this.efficiencyBoxMCA2.TabIndex = 29;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(915, 103);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 13);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Efficiency";
-            // 
-            // efficiencyBoxMCA1
-            // 
-            this.efficiencyBoxMCA1.Location = new System.Drawing.Point(915, 121);
-            this.efficiencyBoxMCA1.Name = "efficiencyBoxMCA1";
-            this.efficiencyBoxMCA1.Size = new System.Drawing.Size(143, 20);
-            this.efficiencyBoxMCA1.TabIndex = 27;
+            this.textBox1.Location = new System.Drawing.Point(312, 28);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(852, 421);
+            this.textBox1.TabIndex = 3;
             // 
             // Form1
             // 
@@ -811,6 +898,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -886,6 +977,13 @@
         private System.Windows.Forms.TextBox efficiencyBoxMCA2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox efficiencyBoxMCA1;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
 	}
 }
 

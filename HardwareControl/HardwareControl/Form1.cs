@@ -333,5 +333,10 @@ namespace HardwareControl
             }
             efficiencyBoxMCA2.Text = (100 -UcaBase.Efficiency).ToString();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
