@@ -373,5 +373,43 @@ namespace HardwareControl.Lab7
                 resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
             }
         }
+
+
+        public void Walking0to1Algoritm()
+        {
+
+
+            for (int i = 1; i < xDimention - 1; i++)
+            {
+                for (int j = 1; j < yDimention; j++)
+                {
+                    DoWalkingTest(i * xDimention + j);
+                }
+            }
+        }
+
+        private void DoWalkingTest(int index)
+        {
+            testPass = new bool[cells.Count()];
+            for (int i = 0; i < cells.Count; i++)
+            {
+                testPass[i] = true;
+            }
+
+            SetTrue(index-xDimention-1);
+            SetTrue(index-xDimention);
+            SetTrue(index-xDimention+1);
+            SetTrue(index-1);
+            SetFalse(index);
+            SetTrue(index +1);
+            SetTrue(index + xDimention - 1);
+            SetTrue(index + xDimention);
+            SetTrue(index + xDimention + 1);
+
+            testPass[index] =
+                IsEqualToTrue(index - xDimention - 1) && IsEqualToTrue(index - xDimention) && IsEqualToTrue(index - xDimention + 1)
+                && IsEqualToTrue(index - 1) && IsEqualToFalse(index) && IsEqualToTrue(index + 1) && IsEqualToTrue(index + xDimention - 1)
+                && IsEqualToTrue(index + xDimention) && IsEqualToTrue(index + xDimention + 1);
+        }
     }
 }
