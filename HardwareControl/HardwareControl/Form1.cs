@@ -338,9 +338,18 @@ namespace HardwareControl
         private void button7_Click(object sender, EventArgs e)
         {
             var a = new CellsMatrix(10, 10);
-            lab7ListView.Columns.Add("Cell state");
+            lab7ListView.Clear();
+            lab7ListView.Columns.Add("CellNumber", "#", 20);
+            lab7ListView.Columns.Add("CellState", "Cell state", 250);
 
-            lab7ListView.Items.Add(new ListViewItem(a.GetResultMessages().ToArray()));
+            List<string> messages = a.GetResultMessages();
+            int counter = 0;
+            foreach (var message in messages)
+            {
+                ListViewItem newItem = new ListViewItem(counter++.ToString());
+                newItem.SubItems.Add(message);
+                lab7ListView.Items.Add(newItem);
+            }
         }
     }
 }

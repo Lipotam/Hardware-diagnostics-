@@ -99,13 +99,12 @@
             this.labelPlynom = new System.Windows.Forms.Label();
             this.textBoxUCA1 = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lab7ListView = new System.Windows.Forms.ListView();
             this.button7 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.lab7ListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -798,7 +797,6 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.lab7ListView);
-            this.tabPage7.Controls.Add(this.textBox1);
             this.tabPage7.Controls.Add(this.button7);
             this.tabPage7.Controls.Add(this.label11);
             this.tabPage7.Controls.Add(this.label10);
@@ -811,18 +809,20 @@
             this.tabPage7.Text = "Lab7";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // lab7ListView
             // 
-            this.textBox1.Location = new System.Drawing.Point(312, 28);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(197, 421);
-            this.textBox1.TabIndex = 3;
+            this.lab7ListView.FullRowSelect = true;
+            this.lab7ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lab7ListView.Location = new System.Drawing.Point(231, 29);
+            this.lab7ListView.Name = "lab7ListView";
+            this.lab7ListView.Size = new System.Drawing.Size(981, 421);
+            this.lab7ListView.TabIndex = 4;
+            this.lab7ListView.UseCompatibleStateImageBehavior = false;
+            this.lab7ListView.View = System.Windows.Forms.View.Details;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(11, 110);
+            this.button7.Location = new System.Drawing.Point(12, 83);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(133, 23);
             this.button7.TabIndex = 2;
@@ -833,7 +833,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 59);
+            this.label11.Location = new System.Drawing.Point(13, 57);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 13);
             this.label11.TabIndex = 1;
@@ -842,7 +842,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 34);
+            this.label10.Location = new System.Drawing.Point(14, 30);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 13);
             this.label10.TabIndex = 1;
@@ -871,18 +871,6 @@
             0,
             0,
             0});
-            // 
-            // lab7ListView
-            // 
-            this.lab7ListView.Location = new System.Drawing.Point(613, 35);
-            this.lab7ListView.Name = "lab7ListView";
-            this.lab7ListView.Size = new System.Drawing.Size(570, 414);
-            this.lab7ListView.TabIndex = 4;
-            this.lab7ListView.UseCompatibleStateImageBehavior = false;
-            this.lab7ListView.FullRowSelect = true;
-            this.lab7ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lab7ListView.Size = new System.Drawing.Size(1218, 243);
-            this.lab7ListView.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 
@@ -992,7 +980,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox efficiencyBoxMCA1;
         private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
