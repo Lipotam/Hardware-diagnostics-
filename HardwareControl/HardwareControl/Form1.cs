@@ -8,6 +8,7 @@ using HardwareControl.Lab2;
 using HardwareControl.Lab3;
 using HardwareControl.Lab4;
 using HardwareControl.Lab6;
+using HardwareControl.Lab7;
 
 namespace HardwareControl
 {
@@ -273,7 +274,7 @@ namespace HardwareControl
             {
                 this.textBoxUCA1.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA1.Text = (100 -UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA1.Text = (100 - UcaBase.Efficiency).ToString();
 
             List<String> resMCA1 = this.UcaBase.GetAllSingleErrors(this._signal, true);
             foreach (string str in resMCA1)
@@ -307,14 +308,14 @@ namespace HardwareControl
             {
                 this.textBoxUCA3.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA3.Text = (100 -UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA3.Text = (100 - UcaBase.Efficiency).ToString();
 
             List<String> resMCA3 = this.UcaBase.GetAllTripleErrors(this._signal, true);
             foreach (string str in resMCA3)
             {
                 this.textBoxMCA3.Text += str + Environment.NewLine;
             }
-            efficiencyBoxMCA3.Text = (100 -UcaBase.Efficiency).ToString();
+            efficiencyBoxMCA3.Text = (100 - UcaBase.Efficiency).ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -324,19 +325,22 @@ namespace HardwareControl
             {
                 this.textBoxUCA2.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA2.Text = (100 -UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA2.Text = (100 - UcaBase.Efficiency).ToString();
 
             List<String> resMCA2 = this.UcaBase.GetAllDoubleErrors(this._signal, true);
             foreach (string str in resMCA2)
             {
                 this.textBoxMCA2.Text += str + Environment.NewLine;
             }
-            efficiencyBoxMCA2.Text = (100 -UcaBase.Efficiency).ToString();
+            efficiencyBoxMCA2.Text = (100 - UcaBase.Efficiency).ToString();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            var a = new CellsMatrix(10, 10);
+            lab7ListView.Columns.Add("Cell state");
 
+            lab7ListView.Items.Add(new ListViewItem(a.GetResultMessages().ToArray()));
         }
     }
 }

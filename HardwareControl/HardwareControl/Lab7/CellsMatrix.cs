@@ -20,20 +20,194 @@ namespace HardwareControl.Lab7
             yDimention = y;
 
             resultMessages = new List<string>();
-
+            InitializeCells();
             for (int i = 0; i < cells.Count; i++)
             {
                 resultMessages.Add("");
             }
+
+            ReportCellStates();
+        }
+
+        public List<string> GetResultMessages()
+        {
+            return resultMessages;
         }
 
         private void InitializeCells()
         {
+            Random rand = new Random();
+            while (cells.Count < xDimention * yDimention)
+            {
+                int randomValue = rand.Next(100);
 
+                switch (randomValue)
+                {
+                    case 0:
+                    case 1:
+                        cells.Add(CellFactory.GetNoCellonAddressCell());
+                        break;
+                    case 2:
+                    case 3:
+                        cells.AddRange(CellFactory.GetMultipleCellsOnAddressCell(cells.Count));
+                        break;
+                    case 4:
+                    case 5:
+                        cells.AddRange(CellFactory.GetMultipleAddressesOnCell(cells.Count));
+                        break;
+                    case 6:
+                    case 7:
+                        cells.Add(CellFactory.GetConstFalseCell());
+                        break;
+                    case 8:
+                    case 9:
+                        cells.Add(CellFactory.GetConstTrueCell());
+                        break;
+                    case 10:
+                    case 11:
+                        cells.AddRange(CellFactory.GetCFinAddressLessUpCell(cells.Count));
+                        break;
+                    case 12:
+                    case 13:
+                        cells.AddRange(CellFactory.GetCFinAddressLessDownCell(cells.Count));
+                        break;
+                    case 14:
+                    case 15:
+                        cells.AddRange(CellFactory.GetCFinAddressMoreUpCell(cells.Count));
+                        break;
+                    case 16:
+                    case 17:
+                        cells.AddRange(CellFactory.GetCFinAddressMoreDownCell(cells.Count));
+                        break;
+                    case 18:
+                    case 19:
+                        cells.AddRange(CellFactory.GetCFidAddressLessUpSetFalseCell(cells.Count));
+                        break;
+                    case 20:
+                    case 21:
+                        cells.AddRange(CellFactory.GetCFidAddressLessDownSetFalseCell(cells.Count));
+                        break;
+                    case 22:
+                    case 23:
+                        cells.AddRange(CellFactory.GetCFidAddressMoreUpSetFalseCell(cells.Count));
+                        break;
+                    case 24:
+                    case 25:
+                        cells.AddRange(CellFactory.GetCFidAddressMoreDownSetFalseCell(cells.Count));
+                        break;
+                    case 26:
+                    case 27:
+                        cells.AddRange(CellFactory.GetCFidAddressLessUpSetTrueCell(cells.Count));
+                        break;
+                    case 28:
+                    case 29:
+                        cells.AddRange(CellFactory.GetCFidAddressLessDownSetTrueCell(cells.Count));
+                        break;
 
+                    case 30:
+                    case 31:
+                        cells.AddRange(CellFactory.GetCFidAddressMoreUpSetTrueCell(cells.Count));
+                        break;
+                    case 32:
+                    case 33:
+                        cells.AddRange(CellFactory.GetCFidAddressMoreDownSetTrueCell(cells.Count));
+                        break;
+                    case 34:
+                    case 35:
+                        cells.AddRange(CellFactory.GetPNPSFK3Cell(cells.Count));
+                        break;
+                    case 36:
+                    case 37:
+                        cells.AddRange(CellFactory.GetANPSFK3Cell(cells.Count));
+                        break;
+                    default:
+                        cells.Add(CellFactory.GetOkCell());
+                        break;
+                }
+            }
+        }
 
-
-
+        private void ReportCellStates()
+        {
+            int index = 0;
+            foreach (MemCell memCell in cells)
+            {
+                switch (memCell.ErrorType)
+                {
+                    case MemErrorTypes.OK:
+                        resultMessages[index] += "OK";
+                        break;
+                    case MemErrorTypes.AF_no_cells_on_the_address:
+                        resultMessages[index] += "no cells on the address";
+                        break;
+                    case MemErrorTypes.AF_cell_is_unreachable:
+                        resultMessages[index] += "the cell is unreachable";
+                        break;
+                    case MemErrorTypes.AF_multiple_cells_on_address:
+                        resultMessages[index] += "multiple_cells_on_address";
+                        break;
+                    case MemErrorTypes.AF_multiple_addresses_on_the_Cell:
+                        resultMessages[index] += "multiple_addresses_on_the_Cell";
+                        break;
+                    case MemErrorTypes.SAF_0:
+                        resultMessages[index] += "const false";
+                        break;
+                    case MemErrorTypes.SAF_1:
+                        resultMessages[index] += "const true";
+                        break;
+                    case MemErrorTypes.CFin_aggressor_addressLess_up:
+                        resultMessages[index] += "CFin_aggressor_addressLess_up";
+                        break;
+                    case MemErrorTypes.CFin_aggressor_addressLess_down:
+                        resultMessages[index] += "CFin_aggressor_addressLess_down";
+                        break;
+                    case MemErrorTypes.CFin_aggressor_addressMore_up:
+                        resultMessages[index] += "CFin_aggressor_addressMore_up";
+                        break;
+                    case MemErrorTypes.CFin_aggressor_addressMore_down:
+                        resultMessages[index] += "CFin_aggressor_addressMore_down";
+                        break;
+                    case MemErrorTypes.CFin_victiom:
+                        resultMessages[index] += "CFin_victiom";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressLess_up_set_false:
+                        resultMessages[index] += "CFid_aggressor_addressLess_up_set_false";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressLess_down_set_false:
+                        resultMessages[index] += "CFid_aggressor_addressLess_down_set_false";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressMore_up_set_false:
+                        resultMessages[index] += "CFid_aggressor_addressMore_up_set_false";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressMore_down_set_false:
+                        resultMessages[index] += "CFid_aggressor_addressMore_down_set_false";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressLess_up_set_true:
+                        resultMessages[index] += "CFid_aggressor_addressLess_up_set_true";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressLess_down_set_true:
+                        resultMessages[index] += "CFid_aggressor_addressLess_down_set_true";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressMore_up_set_true:
+                        resultMessages[index] += "CFid_aggressor_addressMore_up_set_true";
+                        break;
+                    case MemErrorTypes.CFid_aggressor_addressMore_down_set_true:
+                        resultMessages[index] += "CFid_aggressor_addressMore_down_set_true";
+                        break;
+                    case MemErrorTypes.CFid_victiom:
+                        resultMessages[index] += "CFid_victiom";
+                        break;
+                    case MemErrorTypes.PNPSFK3:
+                        resultMessages[index] += "PNPSFK3";
+                        break;
+                    case MemErrorTypes.ANPSFK3:
+                        resultMessages[index] += "ANPSFK3";
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                index++;
+            }
         }
 
         public int Width
