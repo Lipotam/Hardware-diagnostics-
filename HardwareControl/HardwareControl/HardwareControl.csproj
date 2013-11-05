@@ -72,6 +72,7 @@
     <Compile Include="Lab4\LFSRInfo.cs" />
     <Compile Include="Lab4\SetComparer.cs" />
     <Compile Include="Lab6\UCA.cs" />
+    <Compile Include="Lab7\CellFactory.cs" />
     <Compile Include="Lab7\CellsMatrix.cs" />
     <Compile Include="Lab7\MarchTestQuery.cs" />
     <Compile Include="Lab7\MarshTestFunctions.cs" />
