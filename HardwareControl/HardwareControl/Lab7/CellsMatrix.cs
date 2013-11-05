@@ -10,7 +10,8 @@ namespace HardwareControl.Lab7
         private List<MemCell> cells;
         private int xDimention, yDimention;
         private bool[] testPass;
-        private List<string> resultMessages;
+        private List<string> cellStatesMessages;
+        private List<string> cellPassStatesResult;
 
         public CellsMatrix(int x = 10, int y = 10)
         {
@@ -19,11 +20,13 @@ namespace HardwareControl.Lab7
             xDimention = x;
             yDimention = y;
 
-            resultMessages = new List<string>();
+            this.cellStatesMessages = new List<string>();
+            this.cellPassStatesResult = new List<string>();
             InitializeCells();
             for (int i = 0; i < cells.Count; i++)
             {
-                resultMessages.Add("");
+                this.cellStatesMessages.Add("");
+                this.cellPassStatesResult.Add("");
             }
 
             ReportCellStates();
@@ -31,7 +34,12 @@ namespace HardwareControl.Lab7
 
         public List<string> GetResultMessages()
         {
-            return resultMessages;
+            return this.cellStatesMessages;
+        }
+
+        public List<string> GetTestPassResultsMessages()
+        {
+            return this.cellPassStatesResult;
         }
 
         private void InitializeCells()
@@ -135,73 +143,73 @@ namespace HardwareControl.Lab7
                 switch (memCell.ErrorType)
                 {
                     case MemErrorTypes.OK:
-                        resultMessages[index] += "OK";
+                        this.cellStatesMessages[index] += "OK";
                         break;
                     case MemErrorTypes.AF_no_cells_on_the_address:
-                        resultMessages[index] += "no cells on the address";
+                        this.cellStatesMessages[index] += "no cells on the address";
                         break;
                     case MemErrorTypes.AF_cell_is_unreachable:
-                        resultMessages[index] += "the cell is unreachable";
+                        this.cellStatesMessages[index] += "the cell is unreachable";
                         break;
                     case MemErrorTypes.AF_multiple_cells_on_address:
-                        resultMessages[index] += "multiple_cells_on_address";
+                        this.cellStatesMessages[index] += "multiple_cells_on_address";
                         break;
                     case MemErrorTypes.AF_multiple_addresses_on_the_Cell:
-                        resultMessages[index] += "multiple_addresses_on_the_Cell";
+                        this.cellStatesMessages[index] += "multiple_addresses_on_the_Cell";
                         break;
                     case MemErrorTypes.SAF_0:
-                        resultMessages[index] += "const false";
+                        this.cellStatesMessages[index] += "const false";
                         break;
                     case MemErrorTypes.SAF_1:
-                        resultMessages[index] += "const true";
+                        this.cellStatesMessages[index] += "const true";
                         break;
                     case MemErrorTypes.CFin_aggressor_addressLess_up:
-                        resultMessages[index] += "CFin_aggressor_addressLess_up";
+                        this.cellStatesMessages[index] += "CFin_aggressor_addressLess_up";
                         break;
                     case MemErrorTypes.CFin_aggressor_addressLess_down:
-                        resultMessages[index] += "CFin_aggressor_addressLess_down";
+                        this.cellStatesMessages[index] += "CFin_aggressor_addressLess_down";
                         break;
                     case MemErrorTypes.CFin_aggressor_addressMore_up:
-                        resultMessages[index] += "CFin_aggressor_addressMore_up";
+                        this.cellStatesMessages[index] += "CFin_aggressor_addressMore_up";
                         break;
                     case MemErrorTypes.CFin_aggressor_addressMore_down:
-                        resultMessages[index] += "CFin_aggressor_addressMore_down";
+                        this.cellStatesMessages[index] += "CFin_aggressor_addressMore_down";
                         break;
                     case MemErrorTypes.CFin_victiom:
-                        resultMessages[index] += "CFin_victiom";
+                        this.cellStatesMessages[index] += "CFin_victiom";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressLess_up_set_false:
-                        resultMessages[index] += "CFid_aggressor_addressLess_up_set_false";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressLess_up_set_false";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressLess_down_set_false:
-                        resultMessages[index] += "CFid_aggressor_addressLess_down_set_false";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressLess_down_set_false";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressMore_up_set_false:
-                        resultMessages[index] += "CFid_aggressor_addressMore_up_set_false";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressMore_up_set_false";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressMore_down_set_false:
-                        resultMessages[index] += "CFid_aggressor_addressMore_down_set_false";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressMore_down_set_false";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressLess_up_set_true:
-                        resultMessages[index] += "CFid_aggressor_addressLess_up_set_true";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressLess_up_set_true";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressLess_down_set_true:
-                        resultMessages[index] += "CFid_aggressor_addressLess_down_set_true";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressLess_down_set_true";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressMore_up_set_true:
-                        resultMessages[index] += "CFid_aggressor_addressMore_up_set_true";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressMore_up_set_true";
                         break;
                     case MemErrorTypes.CFid_aggressor_addressMore_down_set_true:
-                        resultMessages[index] += "CFid_aggressor_addressMore_down_set_true";
+                        this.cellStatesMessages[index] += "CFid_aggressor_addressMore_down_set_true";
                         break;
                     case MemErrorTypes.CFid_victiom:
-                        resultMessages[index] += "CFid_victiom";
+                        this.cellStatesMessages[index] += "CFid_victiom";
                         break;
                     case MemErrorTypes.PNPSFK3:
-                        resultMessages[index] += "PNPSFK3";
+                        this.cellStatesMessages[index] += "PNPSFK3";
                         break;
                     case MemErrorTypes.ANPSFK3:
-                        resultMessages[index] += "ANPSFK3";
+                        this.cellStatesMessages[index] += "ANPSFK3";
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -597,7 +605,7 @@ namespace HardwareControl.Lab7
         {
             for (int i = 0; i < cells.Count; i++)
             {
-                resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
+                this.cellPassStatesResult[i] = testPass[i] ? "Passed " : "Not Passed ";
             }
         }
     }
