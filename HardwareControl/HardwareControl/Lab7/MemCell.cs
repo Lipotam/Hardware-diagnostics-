@@ -3,7 +3,7 @@ using HardwareControl.Elements;
 
 namespace HardwareControl.Lab7
 {
-    class MemCell
+public class MemCell
     {
         private MemErrorTypes errorType;
         private ElementsValues cellValue;

@@ -27,6 +27,15 @@ namespace HardwareControl.Lab7
             }
         }
 
+        private void InitializeCells()
+        {
+
+
+
+
+
+        }
+
         public int Width
         {
             get
@@ -119,13 +128,9 @@ namespace HardwareControl.Lab7
                     }
                     break;
                 case MemErrorTypes.PNPSFK3:
-                    cells[index].CellValue = inputValue;
-                    if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
+                    if (cells[index - 1].CellValue == ElementsValues.True && cells[index + 1].CellValue == ElementsValues.True)
                     {
-                        if (cells[cells[index].CellAddresses.First() + 1].CellValue == ElementsValues.True && cells[cells[index].CellAddresses.First() - 1].CellValue == ElementsValues.True)
-                        {
-                            RevertValue(cells[index].CellAddresses.First());
-                        }
+                        cells[index].CellValue = inputValue;
                     }
                     break;
                 default:
