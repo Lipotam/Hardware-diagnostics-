@@ -367,7 +367,7 @@ namespace HardwareControl.Lab7
                 }
                 else
                 {
-                    for (int i = cells.Count; i > 0; i++)
+                    for (int i = cells.Count-1; i > 0; i--)
                     {
                         DoQuery(i, testQuery.Functions);
                     }
@@ -550,7 +550,7 @@ namespace HardwareControl.Lab7
         {
             for (int i = 1; i < xDimention - 1; i++)
             {
-                for (int j = 1; j < yDimention; j++)
+                for (int j = 1; j < yDimention-1; j++)
                 {
                     DoWalkingTest(i * xDimention + j);
                 }
