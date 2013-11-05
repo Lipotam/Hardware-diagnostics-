@@ -580,6 +580,7 @@ namespace HardwareControl.Lab7
         private void DoWalkingTest(int index)
         {
             testPass = new bool[cells.Count()];
+
             for (int i = 0; i < cells.Count; i++)
             {
                 testPass[i] = true;
@@ -603,9 +604,10 @@ namespace HardwareControl.Lab7
 
         private void LogTestResult()
         {
+            cellPassStatesResult = new List<string>();
             for (int i = 0; i < cells.Count; i++)
             {
-                this.cellPassStatesResult[i] = testPass[i] ? "Passed " : "Not Passed ";
+                this.cellPassStatesResult.Add(testPass[i] ? "Passed " : "Not Passed ");
             }
         }
     }

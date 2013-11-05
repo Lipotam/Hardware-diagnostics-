@@ -99,13 +99,12 @@
             this.labelPlynom = new System.Windows.Forms.Label();
             this.textBoxUCA1 = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.lab7ListView = new System.Windows.Forms.ListView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.shemaPictureBox)).BeginInit();
             this.Lab3Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -125,6 +124,7 @@
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // shemaPictureBox
@@ -797,8 +797,7 @@
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.lab7ListView);
-            this.tabPage7.Controls.Add(this.textBox1);
+            this.tabPage7.Controls.Add(this.dataGridView1);
             this.tabPage7.Controls.Add(this.button7);
             this.tabPage7.Controls.Add(this.label11);
             this.tabPage7.Controls.Add(this.label10);
@@ -810,15 +809,6 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Lab7";
             this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(312, 28);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(197, 421);
-            this.textBox1.TabIndex = 3;
             // 
             // button7
             // 
@@ -872,17 +862,13 @@
             0,
             0});
             // 
-            // lab7ListView
+            // dataGridView1
             // 
-            this.lab7ListView.Location = new System.Drawing.Point(613, 35);
-            this.lab7ListView.Name = "lab7ListView";
-            this.lab7ListView.Size = new System.Drawing.Size(570, 414);
-            this.lab7ListView.TabIndex = 4;
-            this.lab7ListView.UseCompatibleStateImageBehavior = false;
-            this.lab7ListView.FullRowSelect = true;
-            this.lab7ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lab7ListView.Size = new System.Drawing.Size(1218, 243);
-            this.lab7ListView.View = System.Windows.Forms.View.Details;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(295, 28);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(907, 423);
+            this.dataGridView1.TabIndex = 5;
             // 
             // Form1
             // 
@@ -916,6 +902,7 @@
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -992,13 +979,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox efficiencyBoxMCA1;
         private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.ListView lab7ListView;
+        private System.Windows.Forms.DataGridView dataGridView1;
 	}
 }
 

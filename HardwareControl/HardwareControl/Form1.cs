@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using HardwareControl.Elements;
@@ -337,10 +338,32 @@ namespace HardwareControl
 
         private void button7_Click(object sender, EventArgs e)
         {
-            var a = new CellsMatrix(10, 10);
-            lab7ListView.Columns.Add("Cell state");
+            var cellsMatrix = new CellsMatrix((int)numericUpDown1.Value, (int)numericUpDown2.Value);
 
-            lab7ListView.Items.Add(new ListViewItem(a.GetResultMessages().ToArray()));
+            cellsMatrix.AlgoritmB();
+            var first = cellsMatrix.GetTestPassResultsMessages();
+
+            cellsMatrix.MarshPSAlgoritm();
+            var second = cellsMatrix.GetTestPassResultsMessages();
+
+            cellsMatrix.Walking0To1Algoritm();
+            var third = cellsMatrix.GetTestPassResultsMessages();
+
+            var states = cellsMatrix.GetResultMessages();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Index");
+            dt.Columns.Add("States");
+            dt.Columns.Add("AlgoritmB");
+            dt.Columns.Add("Marsh Algoritm");
+            dt.Columns.Add("Walking Algoritm");
+
+            for (int i = 0; i < first.Count; i++)
+            {
+                dt.Rows.Add(i,states[i],first[i], second[i], third[i]);
+            }
+
+            this.dataGridView1.DataSource = dt;
         }
     }
 }
