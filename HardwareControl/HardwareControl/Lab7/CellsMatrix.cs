@@ -290,11 +290,7 @@ namespace HardwareControl.Lab7
                 };
 
             RunMarshTest(testQueries);
-
-            for (int i = 0; i < cells.Count; i++)
-            {
-                resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
-            }
+            LogTestResult();
         }
 
         public void MarshPSAlgoritm()
@@ -367,18 +363,12 @@ namespace HardwareControl.Lab7
                 };
 
             RunMarshTest(testQueries);
-
-            for (int i = 0; i < cells.Count; i++)
-            {
-                resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
-            }
+            LogTestResult();
         }
 
 
-        public void Walking0to1Algoritm()
+        public void Walking0To1Algoritm()
         {
-
-
             for (int i = 1; i < xDimention - 1; i++)
             {
                 for (int j = 1; j < yDimention; j++)
@@ -386,6 +376,8 @@ namespace HardwareControl.Lab7
                     DoWalkingTest(i * xDimention + j);
                 }
             }
+
+            LogTestResult();
         }
 
         private void DoWalkingTest(int index)
@@ -396,12 +388,12 @@ namespace HardwareControl.Lab7
                 testPass[i] = true;
             }
 
-            SetTrue(index-xDimention-1);
-            SetTrue(index-xDimention);
-            SetTrue(index-xDimention+1);
-            SetTrue(index-1);
+            SetTrue(index - xDimention - 1);
+            SetTrue(index - xDimention);
+            SetTrue(index - xDimention + 1);
+            SetTrue(index - 1);
             SetFalse(index);
-            SetTrue(index +1);
+            SetTrue(index + 1);
             SetTrue(index + xDimention - 1);
             SetTrue(index + xDimention);
             SetTrue(index + xDimention + 1);
@@ -410,6 +402,14 @@ namespace HardwareControl.Lab7
                 IsEqualToTrue(index - xDimention - 1) && IsEqualToTrue(index - xDimention) && IsEqualToTrue(index - xDimention + 1)
                 && IsEqualToTrue(index - 1) && IsEqualToFalse(index) && IsEqualToTrue(index + 1) && IsEqualToTrue(index + xDimention - 1)
                 && IsEqualToTrue(index + xDimention) && IsEqualToTrue(index + xDimention + 1);
+        }
+
+        private void LogTestResult()
+        {
+            for (int i = 0; i < cells.Count; i++)
+            {
+                resultMessages[i] += testPass[i] ? "Passed " : "Not Passed ";
+            }
         }
     }
 }
