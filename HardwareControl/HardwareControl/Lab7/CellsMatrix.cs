@@ -246,6 +246,11 @@ namespace HardwareControl.Lab7
 
         private void SetLogic(int index, ElementsValues inputValue)
         {
+            if (index < 0 || index > cells.Count)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             switch (cells[index].ErrorType)
             {
                 case MemErrorTypes.OK:
@@ -566,9 +571,11 @@ namespace HardwareControl.Lab7
 
         public void Walking0To1Algoritm()
         {
-            for (int i = 1; i < xDimention - 1; i++)
+            testPass = new bool[cells.Count()];
+
+            for (int i = 0; i < yDimention - 1; i++)
             {
-                for (int j = 1; j < yDimention - 1; j++)
+                for (int j = 0; j < xDimention - 1; j++)
                 {
                     DoWalkingTest(i * xDimention + j);
                 }
@@ -579,27 +586,80 @@ namespace HardwareControl.Lab7
 
         private void DoWalkingTest(int index)
         {
-            testPass = new bool[cells.Count()];
+            int maxIndex = cells.Count - 1;
+            
+            SetFalse(index);
 
-            for (int i = 0; i < cells.Count; i++)
+            if (index - xDimention - 1 > 0)
             {
-                testPass[i] = true;
+                SetTrue(index - xDimention - 1);
+            }
+            if (index - xDimention > 0)
+            {
+                SetTrue(index - xDimention);
+            }
+            if (index - xDimention + 1 > 0)
+            {
+                SetTrue(index - xDimention + 1);
+            }
+            if (index - 1 > 0)
+            {
+                SetTrue(index - 1);
+            }
+            if (index + 1 < maxIndex)
+            {
+                SetTrue(index + 1);
+            }
+            if (index + xDimention - 1 < maxIndex)
+            {
+                SetTrue(index + xDimention - 1);
+            }
+            if (index + xDimention < maxIndex)
+            {
+                SetTrue(index + xDimention);
+            }
+            if (index + xDimention + 1 < maxIndex)
+            {
+                SetTrue(index + xDimention + 1);
             }
 
-            SetTrue(index - xDimention - 1);
-            SetTrue(index - xDimention);
-            SetTrue(index - xDimention + 1);
-            SetTrue(index - 1);
-            SetFalse(index);
-            SetTrue(index + 1);
-            SetTrue(index + xDimention - 1);
-            SetTrue(index + xDimention);
-            SetTrue(index + xDimention + 1);
 
-            testPass[index] =
-                IsEqualToTrue(index - xDimention - 1) && IsEqualToTrue(index - xDimention) && IsEqualToTrue(index - xDimention + 1)
-                && IsEqualToTrue(index - 1) && IsEqualToFalse(index) && IsEqualToTrue(index + 1) && IsEqualToTrue(index + xDimention - 1)
-                && IsEqualToTrue(index + xDimention) && IsEqualToTrue(index + xDimention + 1);
+            bool result = IsEqualToFalse(index);
+
+            if (index - xDimention - 1 > 0)
+            {
+                result &= IsEqualToTrue(index - xDimention - 1);
+            }
+            if (index - xDimention > 0)
+            {
+                result &= IsEqualToTrue(index - xDimention);
+            }
+            if (index - xDimention + 1 > 0)
+            {
+                result &= IsEqualToTrue(index - xDimention + 1);
+            }
+            if (index - 1 > 0)
+            {
+                result &= IsEqualToTrue(index - 1);
+            }
+            if (index + 1 < maxIndex)
+            {
+                result &= IsEqualToTrue(index + 1);
+            }
+            if (index + xDimention - 1 < maxIndex)
+            {
+                result &= IsEqualToTrue(index + xDimention - 1);
+            }
+            if (index + xDimention < maxIndex)
+            {
+                result &= IsEqualToTrue(index + xDimention - 1);
+            }
+            if (index + xDimention + 1 < maxIndex)
+            {
+                result &= IsEqualToTrue(index + xDimention + 1);
+            }
+
+            testPass[index] = result;
         }
 
         private void LogTestResult()

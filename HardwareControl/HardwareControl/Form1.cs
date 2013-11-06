@@ -340,7 +340,7 @@ namespace HardwareControl
         {
             var cellsMatrix = new CellsMatrix((int)numericUpDown1.Value, (int)numericUpDown2.Value);
             lab7ListView.Clear();
-            lab7ListView.Columns.Add("CellNumber", "#", 20);
+            lab7ListView.Columns.Add("CellNumber", "#", 40);
             lab7ListView.Columns.Add("CellState", "Cell state", 250);
             lab7ListView.Columns.Add("Walking", "Walking 0/1", 100);
             lab7ListView.Columns.Add("BAlgoritm", "B algoritm", 100);
