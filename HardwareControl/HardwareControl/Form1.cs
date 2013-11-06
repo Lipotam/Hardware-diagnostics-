@@ -339,6 +339,38 @@ namespace HardwareControl
         private void button7_Click(object sender, EventArgs e)
         {
             var cellsMatrix = new CellsMatrix((int)numericUpDown1.Value, (int)numericUpDown2.Value);
+            lab7ListView.Clear();
+            lab7ListView.Columns.Add("CellNumber", "#", 20);
+            lab7ListView.Columns.Add("CellState", "Cell state", 250);
+            lab7ListView.Columns.Add("Walking", "Walking 0/1", 100);
+            lab7ListView.Columns.Add("BAlgoritm", "B algoritm", 100);
+
+            List<string> messages = cellsMatrix.GetResultMessages();
+
+            cellsMatrix.Walking0To1Algoritm();
+            var first = cellsMatrix.GetTestPassResultsMessages();
+
+            cellsMatrix.AlgoritmB();
+            var second = cellsMatrix.GetTestPassResultsMessages();
+
+            for (int i = 0; i < first.Count; i++)
+            {
+                ListViewItem newItem = new ListViewItem(i.ToString());
+                newItem.SubItems.AddRange(
+               new[]
+               {
+                    messages[i],
+                    first[i],
+                    second[i]
+                }
+            );
+                lab7ListView.Items.Add(newItem);
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var cellsMatrix = new CellsMatrix((int)numericUpDown4.Value, (int)numericUpDown3.Value);
 
             cellsMatrix.AlgoritmB();
             var first = cellsMatrix.GetTestPassResultsMessages();
@@ -346,21 +378,16 @@ namespace HardwareControl
             cellsMatrix.MarshPSAlgoritm();
             var second = cellsMatrix.GetTestPassResultsMessages();
 
-            cellsMatrix.Walking0To1Algoritm();
-            var third = cellsMatrix.GetTestPassResultsMessages();
-
             var states = cellsMatrix.GetResultMessages();
-
             DataTable dt = new DataTable();
             dt.Columns.Add("Index");
             dt.Columns.Add("States");
-            dt.Columns.Add("AlgoritmB");
-            dt.Columns.Add("Marsh Algoritm");
-            dt.Columns.Add("Walking Algoritm");
+            dt.Columns.Add("B Algoritm");
+            dt.Columns.Add("Marsh PS Algoritm");
 
             for (int i = 0; i < first.Count; i++)
             {
-                dt.Rows.Add(i,states[i],first[i], second[i], third[i]);
+                dt.Rows.Add(i, states[i], first[i], second[i]);
             }
 
             this.dataGridView1.DataSource = dt;
