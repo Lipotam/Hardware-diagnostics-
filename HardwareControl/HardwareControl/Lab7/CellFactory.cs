@@ -208,7 +208,7 @@ namespace HardwareControl.Lab7
                 {
                                new MemCell(MemErrorTypes.CFid_aggressor_addressLess_down_set_false, new List<int>
                                     {
-                                                    indexOfTheCell
+                                                    indexOfTheCell+1
                                     }),
                                new MemCell(MemErrorTypes.CFid_victiom, new List<int>())
                 };

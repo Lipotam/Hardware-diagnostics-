@@ -111,7 +111,6 @@ namespace HardwareControl.Lab7
                     case 29:
                         cells.AddRange(CellFactory.GetCFidAddressLessDownSetTrueCell(cells.Count));
                         break;
-
                     case 30:
                     case 31:
                         cells.AddRange(CellFactory.GetCFidAddressMoreUpSetTrueCell(cells.Count));
@@ -127,6 +126,10 @@ namespace HardwareControl.Lab7
                     case 36:
                     case 37:
                         cells.AddRange(CellFactory.GetANPSFK3Cell(cells.Count));
+                        break;
+                    case 38:
+                    case 39:
+                        cells.Add(CellFactory.GetUnreachebleCell());
                         break;
                     default:
                         cells.Add(CellFactory.GetOkCell());
@@ -256,7 +259,6 @@ namespace HardwareControl.Lab7
                 case MemErrorTypes.OK:
                 case MemErrorTypes.CFin_victiom:
                 case MemErrorTypes.CFid_victiom:
-                case MemErrorTypes.AF_multiple_addresses_on_the_Cell:
                     cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.AF_no_cells_on_the_address:
@@ -264,6 +266,7 @@ namespace HardwareControl.Lab7
                 case MemErrorTypes.SAF_0:
                 case MemErrorTypes.SAF_1:
                     break;
+                case MemErrorTypes.AF_multiple_addresses_on_the_Cell:
                 case MemErrorTypes.AF_multiple_cells_on_address:
                     cells[index].CellValue = inputValue;
                     foreach (var memCell in cells[index].CellAddresses)
@@ -273,39 +276,40 @@ namespace HardwareControl.Lab7
                     break;
                 case MemErrorTypes.CFin_aggressor_addressLess_up:
                 case MemErrorTypes.CFin_aggressor_addressMore_up:
-                    cells[index].CellValue = inputValue;
                     if (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True)
                     {
                         RevertValue(cells[index].CellAddresses.First());
                     }
+                    cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.CFin_aggressor_addressLess_down:
                 case MemErrorTypes.CFin_aggressor_addressMore_down:
-                    cells[index].CellValue = inputValue;
                     if (cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False)
                     {
                         RevertValue(cells[index].CellAddresses.First());
                     }
+                    cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.CFid_aggressor_addressLess_up_set_false:
                 case MemErrorTypes.CFid_aggressor_addressMore_up_set_false:
                 case MemErrorTypes.CFid_aggressor_addressMore_down_set_false:
                 case MemErrorTypes.CFid_aggressor_addressLess_down_set_false:
-                    cells[index].CellValue = inputValue;
                     if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
                     {
                         cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.False;
                     }
+                    cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.CFid_aggressor_addressLess_up_set_true:
                 case MemErrorTypes.CFid_aggressor_addressMore_up_set_true:
                 case MemErrorTypes.CFid_aggressor_addressMore_down_set_true:
                 case MemErrorTypes.CFid_aggressor_addressLess_down_set_true:
-                    cells[index].CellValue = inputValue;
+                    
                     if ((cells[index].CellValue == ElementsValues.True && inputValue == ElementsValues.False) || (cells[index].CellValue == ElementsValues.False && inputValue == ElementsValues.True))
                     {
                         cells[cells[index].CellAddresses.First()].CellValue = ElementsValues.True;
                     }
+                    cells[index].CellValue = inputValue;
                     break;
                 case MemErrorTypes.ANPSFK3:
                     cells[index].CellValue = inputValue;
@@ -587,7 +591,7 @@ namespace HardwareControl.Lab7
         private void DoWalkingTest(int index)
         {
             int maxIndex = cells.Count - 1;
-            
+
             SetFalse(index);
 
             if (index - xDimention - 1 > 0)
