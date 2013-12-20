@@ -23,11 +23,11 @@ namespace HardwareControl
         private readonly List<int> polynom7 = new List<int> { 7, 5, 3, 1 };
         private LFSRInfo info7;
         private List<string> minimalDefectList;
-        private List<int> LSFR_Match_List;
+        private List<int> lsfrMatchList;
 
         //lab6
-        private List<bool> _signal;
-        private UCA UcaBase;
+        private List<bool> signal;
+        private UCA ucaBase;
 
         public Form1()
         {
@@ -75,11 +75,11 @@ namespace HardwareControl
             this.listViewPolynom1.Columns.Add("Match", column);
 
             // lab6
-            this.UcaBase = new UCA(new List<int> { 8, 5, 3, 1 }, 50);
-            this._signal = UcaBase.GetSignal();
-            this.labelPlynom.Text = "Polynom: " + UcaBase.GetPolynom();
-            this.labelLength.Text = "Length: " + UcaBase.SignalLength;
-            this.textBoxSignal.Text = UCA.SignalToString(_signal);
+            this.ucaBase = new UCA(new List<int> { 8, 5, 3, 1 }, 50);
+            this.signal = this.ucaBase.GetSignal();
+            this.labelPlynom.Text = "Polynom: " + this.ucaBase.GetPolynom();
+            this.labelLength.Text = "Length: " + this.ucaBase.SignalLength;
+            this.textBoxSignal.Text = UCA.SignalToString(this.signal);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -132,13 +132,13 @@ namespace HardwareControl
 
         }
 
-        private List<int> GetSetsToRemove(List<ModelingSet> modelingSets)
+        private List<int> GetSetsToRemove(List<ModelingSet> allModelingSets)
         {
             List<int> setsToRemove = new List<int>();
-            for (int i = 0; i < modelingSets.Count; i++)
+            for (int i = 0; i < allModelingSets.Count; i++)
             {
-                string key = modelingSets[i].ElementNames[modelingSets[i].ElementNames.Count - 1];
-                ElementsValues value = modelingSets[i].GetValue(key);
+                string key = allModelingSets[i].ElementNames[allModelingSets[i].ElementNames.Count - 1];
+                ElementsValues value = allModelingSets[i].GetValue(key);
                 if ((value == ElementsValues.False && this.selectedType) || (value == ElementsValues.True && !this.selectedType))
                 {
                     setsToRemove.Add(i);
@@ -216,7 +216,7 @@ namespace HardwareControl
                 this.minimalDefectList.Add(minimalDefectSet.ModelingSet.ToString());
             }
             // lab3 part
-            this.LSFR_Match_List = new List<int>();
+            this.lsfrMatchList = new List<int>();
             this.info7 = LFSR.GenerateAllSets(this.polynom7, 7);
             for (int i = 0; i < this.info7.Sets.Count; i++)
             {
@@ -230,18 +230,18 @@ namespace HardwareControl
 
                 string match = matchedMinimalDefect != null ? this.minimalDefectList.IndexOf(matchedMinimalDefect).ToString() : string.Empty;
 
-                this.LSFR_Match_List.Add(matchedMinimalDefect != null ? this.minimalDefectList.IndexOf(matchedMinimalDefect) + 1 : 0);
+                this.lsfrMatchList.Add(matchedMinimalDefect != null ? this.minimalDefectList.IndexOf(matchedMinimalDefect) + 1 : 0);
                 List<String> items = new List<string> { i.ToString(), fullSetString, match };
                 this.listViewPolynom1.Items.Add(new ListViewItem(items.ToArray()));
             }
 
             int size = 0, index = 0;
             int[] valuesCount = new int[minimalDefectSets.Count + 1];
-            foreach (var item in this.LSFR_Match_List)
+            foreach (var item in this.lsfrMatchList)
             {
                 size++;
                 valuesCount[item]++;
-                if (valuesCount[item] > 1 && valuesCount[this.LSFR_Match_List.ToArray()[index]] > 1)
+                if (valuesCount[item] > 1 && valuesCount[this.lsfrMatchList.ToArray()[index]] > 1)
                 {
                     valuesCount[item]--;
                     index++;
@@ -263,77 +263,78 @@ namespace HardwareControl
             List<String> keys = polynoms.Keys.ToList();
             foreach (String key in keys)
             {
-                List<String> items = new List<string>() { key, (polynoms[key][0] * 100.0 / (Math.Pow(2, 7) - 1)).ToString(), (polynoms[key][1] - 1).ToString() };
+                List<String> items = new List<string>
+                    { key, (polynoms[key][0] * 100.0 / (Math.Pow(2, 7) - 1)).ToString(), (polynoms[key][1] - 1).ToString() };
                 this.listViewLFSR.Items.Add(new ListViewItem(items.ToArray()));
             }
         }
 
         private void buttonStartLab6_Click(object sender, EventArgs e)
         {
-            List<String> resUCA1 = this.UcaBase.GetAllSingleErrors(this._signal, false);
-            foreach (string str in resUCA1)
+            List<String> resUca1 = this.ucaBase.GetAllSingleErrors(this.signal, false);
+            foreach (string str in resUca1)
             {
                 this.textBoxUCA1.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA1.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA1.Text = (100 - this.ucaBase.Efficiency).ToString();
 
-            List<String> resMCA1 = this.UcaBase.GetAllSingleErrors(this._signal, true);
-            foreach (string str in resMCA1)
+            List<String> resMca1 = this.ucaBase.GetAllSingleErrors(this.signal, true);
+            foreach (string str in resMca1)
             {
                 this.textBoxMCA1.Text += str + Environment.NewLine;
             }
-            efficiencyBoxMCA1.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxMCA1.Text = (100 - this.ucaBase.Efficiency).ToString();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            List<String> resUCA4 = this.UcaBase.GetAllPockerErrors(this._signal, false);
-            foreach (string str in resUCA4)
+            List<String> resUca4 = this.ucaBase.GetAllPockerErrors(this.signal, false);
+            foreach (string str in resUca4)
             {
                 this.textBoxUCA4.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA4.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA4.Text = (100 - this.ucaBase.Efficiency).ToString();
 
-            List<String> resMCA4 = this.UcaBase.GetAllPockerErrors(this._signal, true);
-            foreach (string str in resMCA4)
+            List<String> resMca4 = this.ucaBase.GetAllPockerErrors(this.signal, true);
+            foreach (string str in resMca4)
             {
                 this.textBoxMCA4.Text += str + Environment.NewLine;
             }
-            efficiencyBoxMCA4.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxMCA4.Text = (100 - this.ucaBase.Efficiency).ToString();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            List<String> resUCA3 = this.UcaBase.GetAllTripleErrors(this._signal, false);
-            foreach (string str in resUCA3)
+            List<String> resUca3 = this.ucaBase.GetAllTripleErrors(this.signal, false);
+            foreach (string str in resUca3)
             {
                 this.textBoxUCA3.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA3.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA3.Text = (100 - this.ucaBase.Efficiency).ToString();
 
-            List<String> resMCA3 = this.UcaBase.GetAllTripleErrors(this._signal, true);
-            foreach (string str in resMCA3)
+            List<String> resMca3 = this.ucaBase.GetAllTripleErrors(this.signal, true);
+            foreach (string str in resMca3)
             {
                 this.textBoxMCA3.Text += str + Environment.NewLine;
             }
-            efficiencyBoxMCA3.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxMCA3.Text = (100 - this.ucaBase.Efficiency).ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            List<String> resUCA2 = this.UcaBase.GetAllDoubleErrors(this._signal, false);
-            foreach (string str in resUCA2)
+            List<String> resUca2 = this.ucaBase.GetAllDoubleErrors(this.signal, false);
+            foreach (string str in resUca2)
             {
                 this.textBoxUCA2.Text += str + Environment.NewLine;
             }
-            efficiencyBoxUCA2.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxUCA2.Text = (100 - this.ucaBase.Efficiency).ToString();
 
-            List<String> resMCA2 = this.UcaBase.GetAllDoubleErrors(this._signal, true);
-            foreach (string str in resMCA2)
+            List<String> resMca2 = this.ucaBase.GetAllDoubleErrors(this.signal, true);
+            foreach (string str in resMca2)
             {
                 this.textBoxMCA2.Text += str + Environment.NewLine;
             }
-            efficiencyBoxMCA2.Text = (100 - UcaBase.Efficiency).ToString();
+            efficiencyBoxMCA2.Text = (100 - this.ucaBase.Efficiency).ToString();
         }
 
         private void button7_Click(object sender, EventArgs e)

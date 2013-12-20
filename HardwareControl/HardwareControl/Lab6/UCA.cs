@@ -124,7 +124,6 @@ namespace HardwareControl.Lab6
                             noisy[j] = !noisy[j];
                             noisy[k] = !noisy[k];
                             noisy[t] = !noisy[t];
-                            String res = multiple ? ProcessMCA(noisy) : ProcessUCA(noisy);
                             if (etalon.Equals(multiple ? ProcessMCA(noisy) : ProcessUCA(noisy)))
                             {
                                 result.Add(SignalToString(noisy));

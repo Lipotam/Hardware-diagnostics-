@@ -1,4 +1,5 @@
 ﻿using HardwareControl.Elements;
+using HardwareControl.Services;
 
 namespace HardwareControl
 {

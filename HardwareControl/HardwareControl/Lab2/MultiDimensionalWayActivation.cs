@@ -8,22 +8,22 @@ namespace HardwareControl.Lab2
 {
     class MultiDimensionalWayActivation
     {
-        private static List<String> _wires;
-        private static List<Element> _allElements;
-        private static List<Element> _onWayOut;
+        private static List<String> currentWayWires;
+        private static List<Element> allElements;
+        private static List<Element> onWayOut;
 
         public static List<ModelingSet> FindTests(Wire wire, bool type, List<String> wires, ShemaMap map)
         {
-            _wires = new List<string>(wires);
-            _allElements = new List<Element>(map.IOController.Elements);
-            _onWayOut = new List<Element>();
-            _onWayOut.Add(wire.Setter);
+            currentWayWires = new List<string>(wires);
+            allElements = new List<Element>(map.IOController.Elements);
+            onWayOut = new List<Element>();
+            onWayOut.Add(wire.Setter);
             List<DCube> cubes = new List<DCube>();
             switch (wire.Setter.Type)
             {
                 case ElementsType.Input:
                     {
-                        DCube cube = new DCube(_wires);
+                        DCube cube = new DCube(currentWayWires);
                         if (type)
                         {
                             cube.SetValue(wire.Name, D_cubeValues.NotD);
@@ -39,14 +39,14 @@ namespace HardwareControl.Lab2
                     {
                         if (type)
                         {
-                            DCube cube = new DCube(_wires);
+                            DCube cube = new DCube(currentWayWires);
                             cube.SetValue(wire.Setter.Inputs[0].Name, D_cubeValues.One);
                             cube.SetValue(wire.Name, D_cubeValues.NotD);
                             cubes.Add(cube);
                         }
                         else
                         {
-                            DCube cube = new DCube(_wires);
+                            DCube cube = new DCube(currentWayWires);
                             cube.SetValue(wire.Setter.Inputs[0].Name, D_cubeValues.Null);
                             cube.SetValue(wire.Name, D_cubeValues.D);
                             cubes.Add(cube);
@@ -59,7 +59,7 @@ namespace HardwareControl.Lab2
                         {
                             foreach (Wire w in wire.Setter.Inputs)
                             {
-                                DCube c = new DCube(_wires);
+                                DCube c = new DCube(currentWayWires);
                                 c.SetValue(w.Name, D_cubeValues.Null);
                                 c.SetValue(wire.Name, D_cubeValues.NotD);
                                 cubes.Add(c);
@@ -67,7 +67,7 @@ namespace HardwareControl.Lab2
                         }
                         else
                         {
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             foreach (Wire w in wire.Setter.Inputs)
                             {
                                 c.SetValue(w.Name, D_cubeValues.One);
@@ -81,7 +81,7 @@ namespace HardwareControl.Lab2
                     {
                         if (type)
                         {
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             foreach (Wire w in wire.Setter.Inputs)
                             {
                                 c.SetValue(w.Name, D_cubeValues.One);
@@ -93,7 +93,7 @@ namespace HardwareControl.Lab2
                         {
                             foreach (Wire w in wire.Setter.Inputs)
                             {
-                                DCube c = new DCube(_wires);
+                                DCube c = new DCube(currentWayWires);
                                 c.SetValue(w.Name, D_cubeValues.Null);
                                 c.SetValue(wire.Name, D_cubeValues.D);
                                 cubes.Add(c);
@@ -105,7 +105,7 @@ namespace HardwareControl.Lab2
                     {
                         if (type)
                         {
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             foreach (Wire w in wire.Setter.Inputs)
                             {
                                 c.SetValue(w.Name, D_cubeValues.Null);
@@ -117,7 +117,7 @@ namespace HardwareControl.Lab2
                         {
                             foreach (Wire w in wire.Setter.Inputs)
                             {
-                                DCube c = new DCube(_wires);
+                                DCube c = new DCube(currentWayWires);
                                 c.SetValue(w.Name, D_cubeValues.One);
                                 c.SetValue(wire.Name, D_cubeValues.D);
                                 cubes.Add(c);
@@ -131,7 +131,7 @@ namespace HardwareControl.Lab2
                         {
                             foreach (Wire w in wire.Setter.Inputs)
                             {
-                                DCube c = new DCube(_wires);
+                                DCube c = new DCube(currentWayWires);
                                 c.SetValue(w.Name, D_cubeValues.One);
                                 c.SetValue(wire.Name, D_cubeValues.NotD);
                                 cubes.Add(c);
@@ -139,7 +139,7 @@ namespace HardwareControl.Lab2
                         }
                         else
                         {
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             foreach (Wire w in wire.Setter.Inputs)
                             {
                                 c.SetValue(w.Name, D_cubeValues.Null);
@@ -155,7 +155,7 @@ namespace HardwareControl.Lab2
 						{
 							for (int i = 0; i < 2; i++)
 							{
-								DCube c = new DCube(_wires);
+								DCube c = new DCube(currentWayWires);
 								foreach (Wire w in wire.Setter.Inputs)
 								{
 									if (i == 0)
@@ -176,7 +176,7 @@ namespace HardwareControl.Lab2
 							for (int i = 0; i < 2; i++)
 							{
 								bool trigger = i > 0;
-								DCube c = new DCube(_wires);
+								DCube c = new DCube(currentWayWires);
 								foreach (Wire w in wire.Setter.Inputs)
 								{
 									if (!trigger)
@@ -202,7 +202,7 @@ namespace HardwareControl.Lab2
 							for (int i = 0; i < 2; i++)
 							{
 								bool trigger = i > 0;
-								DCube c = new DCube(_wires);
+								DCube c = new DCube(currentWayWires);
 								foreach (Wire w in wire.Setter.Inputs)
 								{
 									if (!trigger)
@@ -223,7 +223,7 @@ namespace HardwareControl.Lab2
 						{
 							for (int i = 0; i < 2; i++)
 							{
-								DCube c = new DCube(_wires);
+								DCube c = new DCube(currentWayWires);
 								foreach (Wire w in wire.Setter.Inputs)
 								{
 									if (i == 0)
@@ -244,12 +244,12 @@ namespace HardwareControl.Lab2
 	            default: return null;
             }
             cubes = IntersectCubeSets(cubes, ActivateWay(wire));
-            List<Element> anotherElements = _allElements.Except(_onWayOut).ToList();
+            List<Element> anotherElements = allElements.Except(onWayOut).ToList();
             foreach (Element e in anotherElements)
             {
                 cubes = IntersectCubeSets(cubes, GenerateSingularCubes(e));
             }
-            return InterceptModelingSets(ConvertD_cubesToModelingSets(cubes, map));
+            return InterceptModelingSets(ConvertDCubesToModelingSets(cubes, map));
         }
 
         private static List<DCube> ActivateWay(Wire wire)
@@ -257,8 +257,8 @@ namespace HardwareControl.Lab2
             List<DCube> cubes = new List<DCube>();
             while (wire.Getter.Type != ElementsType.Output)
             {
-                _onWayOut.Add(wire.Getter);
-                cubes = IntersectCubeSets(cubes, GenerateD_cubes(wire));
+                onWayOut.Add(wire.Getter);
+                cubes = IntersectCubeSets(cubes, GenerateDCubes(wire));
                 wire = wire.Getter.Outputs[0];
             }
             return cubes;
@@ -295,17 +295,17 @@ namespace HardwareControl.Lab2
             return intersect;
         }
 
-        private static List<DCube> GenerateD_cubes(Wire wire)
+        private static List<DCube> GenerateDCubes(Wire wire)
         {
             List<DCube> cubes = new List<DCube>();
             switch (wire.Getter.Type)
             {
                 case ElementsType.Not:
                     {
-                        DCube c1 = new DCube(_wires);
+                        DCube c1 = new DCube(currentWayWires);
                         c1.SetValue(wire.Name, D_cubeValues.D);
                         c1.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.NotD);
-                        DCube c2 = new DCube(_wires);
+                        DCube c2 = new DCube(currentWayWires);
                         c2.SetValue(wire.Name, D_cubeValues.NotD);
                         c2.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.D);
                         cubes.Add(c1);
@@ -316,14 +316,14 @@ namespace HardwareControl.Lab2
                     {
                         List<Wire> anotherWires = new List<Wire>(wire.Getter.Inputs);
                         anotherWires.Remove(wire);
-                        DCube c1 = new DCube(_wires);
+                        DCube c1 = new DCube(currentWayWires);
                         c1.SetValue(wire.Name, D_cubeValues.D);
                         c1.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.D);
                         foreach (Wire w in anotherWires)
                         {
                             c1.SetValue(w.Name, D_cubeValues.One);
                         }
-                        DCube c2 = new DCube(_wires);
+                        DCube c2 = new DCube(currentWayWires);
                         c2.SetValue(wire.Name, D_cubeValues.NotD);
                         c2.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.NotD);
                         foreach (Wire w in anotherWires)
@@ -338,14 +338,14 @@ namespace HardwareControl.Lab2
                     {
                         List<Wire> anotherWires = new List<Wire>(wire.Getter.Inputs);
                         anotherWires.Remove(wire);
-                        DCube c1 = new DCube(_wires);
+                        DCube c1 = new DCube(currentWayWires);
                         c1.SetValue(wire.Name, D_cubeValues.D);
                         c1.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.NotD);
                         foreach (Wire w in anotherWires)
                         {
                             c1.SetValue(w.Name, D_cubeValues.One);
                         }
-                        DCube c2 = new DCube(_wires);
+                        DCube c2 = new DCube(currentWayWires);
                         c2.SetValue(wire.Name, D_cubeValues.NotD);
                         c2.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.D);
                         foreach (Wire w in anotherWires)
@@ -360,14 +360,14 @@ namespace HardwareControl.Lab2
                     {
                         List<Wire> anotherWires = new List<Wire>(wire.Getter.Inputs);
                         anotherWires.Remove(wire);
-                        DCube c1 = new DCube(_wires);
+                        DCube c1 = new DCube(currentWayWires);
                         c1.SetValue(wire.Name, D_cubeValues.D);
                         c1.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.D);
                         foreach (Wire w in anotherWires)
                         {
                             c1.SetValue(w.Name, D_cubeValues.Null);
                         }
-                        DCube c2 = new DCube(_wires);
+                        DCube c2 = new DCube(currentWayWires);
                         c2.SetValue(wire.Name, D_cubeValues.NotD);
                         c2.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.NotD);
                         foreach (Wire w in anotherWires)
@@ -382,14 +382,14 @@ namespace HardwareControl.Lab2
                     {
                         List<Wire> anotherWires = new List<Wire>(wire.Getter.Inputs);
                         anotherWires.Remove(wire);
-                        DCube c1 = new DCube(_wires);
+                        DCube c1 = new DCube(currentWayWires);
                         c1.SetValue(wire.Name, D_cubeValues.D);
                         c1.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.NotD);
                         foreach (Wire w in anotherWires)
                         {
                             c1.SetValue(w.Name, D_cubeValues.Null);
                         }
-                        DCube c2 = new DCube(_wires);
+                        DCube c2 = new DCube(currentWayWires);
                         c2.SetValue(wire.Name, D_cubeValues.NotD);
                         c2.SetValue(wire.Getter.Outputs[0].Name, D_cubeValues.D);
                         foreach (Wire w in anotherWires)
@@ -411,10 +411,10 @@ namespace HardwareControl.Lab2
             {
                 case ElementsType.Not:
                     {
-                        DCube c1 = new DCube(_wires);
+                        DCube c1 = new DCube(currentWayWires);
                         c1.SetValue(element.Inputs[0].Name, D_cubeValues.One);
                         c1.SetValue(element.Outputs[0].Name, D_cubeValues.Null);
-                        DCube c2 = new DCube(_wires);
+                        DCube c2 = new DCube(currentWayWires);
                         c2.SetValue(element.Inputs[0].Name, D_cubeValues.Null);
                         c2.SetValue(element.Outputs[0].Name, D_cubeValues.One);
                         cubes.Add(c1);
@@ -423,11 +423,11 @@ namespace HardwareControl.Lab2
                     }
                 case ElementsType.And:
                     {
-                        DCube allOnes = new DCube(_wires);
+                        DCube allOnes = new DCube(currentWayWires);
                         foreach (Wire wire in element.Inputs)
                         {
                             allOnes.SetValue(wire.Name, D_cubeValues.One);
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             c.SetValue(wire.Name, D_cubeValues.Null);
                             c.SetValue(element.Outputs[0].Name, D_cubeValues.Null);
                             cubes.Add(c);
@@ -438,11 +438,11 @@ namespace HardwareControl.Lab2
                     }
                 case ElementsType.NotAnd:
                     {
-                        DCube allOnes = new DCube(_wires);
+                        DCube allOnes = new DCube(currentWayWires);
                         foreach (Wire wire in element.Inputs)
                         {
                             allOnes.SetValue(wire.Name, D_cubeValues.One);
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             c.SetValue(wire.Name, D_cubeValues.Null);
                             c.SetValue(element.Outputs[0].Name, D_cubeValues.One);
                             cubes.Add(c);
@@ -453,11 +453,11 @@ namespace HardwareControl.Lab2
                     }
                 case ElementsType.Or:
                     {
-                        DCube allNulls = new DCube(_wires);
+                        DCube allNulls = new DCube(currentWayWires);
                         foreach (Wire wire in element.Inputs)
                         {
                             allNulls.SetValue(wire.Name, D_cubeValues.Null);
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             c.SetValue(wire.Name, D_cubeValues.One);
                             c.SetValue(element.Outputs[0].Name, D_cubeValues.One);
                             cubes.Add(c);
@@ -468,11 +468,11 @@ namespace HardwareControl.Lab2
                     }
                 case ElementsType.NotOr:
                     {
-                        DCube allNulls = new DCube(_wires);
+                        DCube allNulls = new DCube(currentWayWires);
                         foreach (Wire wire in element.Inputs)
                         {
                             allNulls.SetValue(wire.Name, D_cubeValues.Null);
-                            DCube c = new DCube(_wires);
+                            DCube c = new DCube(currentWayWires);
                             c.SetValue(wire.Name, D_cubeValues.One);
                             c.SetValue(element.Outputs[0].Name, D_cubeValues.Null);
                             cubes.Add(c);
@@ -485,7 +485,7 @@ namespace HardwareControl.Lab2
             return cubes;
         }
 
-        private static List<ModelingSet> ConvertD_cubesToModelingSets(List<DCube> cubes, ShemaMap map)
+        private static List<ModelingSet> ConvertDCubesToModelingSets(List<DCube> cubes, ShemaMap map)
         {
             List<ModelingSet> sets = new List<ModelingSet>();
             foreach (DCube cube in cubes)

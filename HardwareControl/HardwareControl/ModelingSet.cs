@@ -125,35 +125,35 @@ namespace HardwareControl
 
 		public List<String> ToList()
 		{
-			List<String> values = new List<string>();
+			List<String> valuesToOutput = new List<string>();
 			foreach (ElementsValues val in this.values.Values.ToList())
 			{
 				switch (val)
 				{
 					case ElementsValues.True:
 						{
-							values.Add("1");
+							valuesToOutput.Add("1");
 							break;
 						}
 					case ElementsValues.False:
 						{
-							values.Add("0");
+							valuesToOutput.Add("0");
 							break;
 						}
 					case ElementsValues.Undefined:
 						{
-							values.Add("U");
+							valuesToOutput.Add("U");
 							break;
 						}
 					case ElementsValues.Unset:
 						{
-							values.Add("X");
+							valuesToOutput.Add("X");
 							break;
 						}
 				}
 				//values.Add(val.ToString());
 			}
-			return values;
+			return valuesToOutput;
 		}
 
 		public int SwitchingNumbers(ModelingSet set)

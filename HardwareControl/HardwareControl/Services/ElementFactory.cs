@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using HardwareControl.Elements;
-using HardwareControl.Services;
 
-namespace HardwareControl
+using HardwareControl.Elements;
+
+namespace HardwareControl.Services
 {
     class ElementFactory
     {
         private Dictionary<ElementsType, IElementCreator> _dictionary;
-        private static int _elements = 0;
+        private static int elements;
 
         #region Singleton
 
-        private static ElementFactory _sharedFactory = null;
+        private static ElementFactory sharedFactory;
 
         public static ElementFactory SharedFactory
         {
             get
             {
-                if (_sharedFactory == null)
+                if (sharedFactory == null)
                 {
-                    _sharedFactory = new ElementFactory();
+                    sharedFactory = new ElementFactory();
                 }
-                return _sharedFactory;
+                return sharedFactory;
             }
         }
 
@@ -30,23 +30,23 @@ namespace HardwareControl
 
         private ElementFactory()
         {
-            _dictionary = new Dictionary<ElementsType, IElementCreator>();
+            this._dictionary = new Dictionary<ElementsType, IElementCreator>();
 
-            _dictionary.Add(ElementsType.And, new ElementCreator<AndElement>());
-            _dictionary.Add(ElementsType.Input, new ElementCreator<InputElement>());
-            _dictionary.Add(ElementsType.Not, new ElementCreator<NotElement>());
-            _dictionary.Add(ElementsType.NotAnd, new ElementCreator<NotAndElement>());
-            _dictionary.Add(ElementsType.NotOr, new ElementCreator<NotOrElement>());
-            _dictionary.Add(ElementsType.Or, new ElementCreator<OrElement>());
-            _dictionary.Add(ElementsType.NotXor, new ElementCreator<NotXorElement>());
-            _dictionary.Add(ElementsType.Output, new ElementCreator<OutputElement>());
+            this._dictionary.Add(ElementsType.And, new ElementCreator<AndElement>());
+            this._dictionary.Add(ElementsType.Input, new ElementCreator<InputElement>());
+            this._dictionary.Add(ElementsType.Not, new ElementCreator<NotElement>());
+            this._dictionary.Add(ElementsType.NotAnd, new ElementCreator<NotAndElement>());
+            this._dictionary.Add(ElementsType.NotOr, new ElementCreator<NotOrElement>());
+            this._dictionary.Add(ElementsType.Or, new ElementCreator<OrElement>());
+            this._dictionary.Add(ElementsType.NotXor, new ElementCreator<NotXorElement>());
+            this._dictionary.Add(ElementsType.Output, new ElementCreator<OutputElement>());
         }
 
         public Element CreateElement(ElementsType type, IOController controller)
         {
-            Element tmp = _dictionary[type].Create();
-            tmp.SetName("Element" + _elements.ToString());
-            _elements++;
+            Element tmp = this._dictionary[type].Create();
+            tmp.SetName("Element" + elements.ToString());
+            elements++;
             if ((type == ElementsType.Input) || (type == ElementsType.Output))
             {
                 controller.AddIOElement(tmp);
@@ -60,9 +60,9 @@ namespace HardwareControl
 
         public Element CreateElement(ElementsType type, IOController controller, String name)
         {
-            Element tmp = _dictionary[type].Create();
+            Element tmp = this._dictionary[type].Create();
             tmp.SetName(name);
-            _elements++;
+            elements++;
             if ((type == ElementsType.Input ) || (type == ElementsType.Output))
             {
                 controller.AddIOElement(tmp);

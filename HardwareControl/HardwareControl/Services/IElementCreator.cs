@@ -1,6 +1,6 @@
 ﻿using HardwareControl.Elements;
 
-namespace HardwareControl
+namespace HardwareControl.Services
 {
     interface IElementCreator
     {

@@ -26,7 +26,7 @@ namespace HardwareControl.Lab3
         {
             List<DefectSet> minimalDefectSets = new List<DefectSet>();
             DefectSet overallDefects = defectSets[0].EmptyDefectSet();
-            while (overallDefects.DefectsCount < overallDefects.MaxDefectCount)
+            while (overallDefects != null && overallDefects.DefectsCount < overallDefects.MaxDefectCount)
             {
                 int maxDefects = 0;
                 DefectSet bestUnion = null;

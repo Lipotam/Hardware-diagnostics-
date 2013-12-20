@@ -1,4 +1,4 @@
-﻿namespace HardwareControl.Lab1
+﻿namespace HardwareControl
 {
     enum GenerationType
     {

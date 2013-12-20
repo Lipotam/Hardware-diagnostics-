@@ -22,27 +22,27 @@ namespace HardwareControl.Lab1
                 {
                     case ElementsType.Input:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
                             ModelingSet setTrue = controller.CreateInputSet();
                             setTrue.SetValue(element.GetName(), ElementsValues.True);
                             ModelingSet setFalse = controller.CreateInputSet();
                             setFalse.SetValue(element.GetName(), ElementsValues.False);
-                            _values.Add(true, new List<ModelingSet>() { setTrue });
-                            _values.Add(false, new List<ModelingSet>() { setFalse });
-                            _elementSets.Add(element, _values);
+                            values.Add(true, new List<ModelingSet> { setTrue });
+                            values.Add(false, new List<ModelingSet> { setFalse });
+                            _elementSets.Add(element, values);
                             break;
                         }
                     case ElementsType.Not:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
-                            _values.Add(true, GetSetsByOutputValue(element.Inputs[0].Setter, false, controller));
-                            _values.Add(false, GetSetsByOutputValue(element.Inputs[0].Setter, true, controller));
-                            _elementSets.Add(element, _values);
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
+                            values.Add(true, GetSetsByOutputValue(element.Inputs[0].Setter, false, controller));
+                            values.Add(false, GetSetsByOutputValue(element.Inputs[0].Setter, true, controller));
+                            _elementSets.Add(element, values);
                             break;
                         }
                     case ElementsType.And:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
                             List<ModelingSet> setsFalse = new List<ModelingSet>();
                             foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.ExeptAllOnes))
                             {
@@ -63,14 +63,14 @@ namespace HardwareControl.Lab1
                                 }
                                 setsTrue = InterceptModelingSets(setsTrue, sets);
                             }
-                            _values.Add(false, setsFalse);
-                            _values.Add(true, setsTrue);
-                            _elementSets.Add(element, _values);
+                            values.Add(false, setsFalse);
+                            values.Add(true, setsTrue);
+                            _elementSets.Add(element, values);
                             break;
                         }
                     case ElementsType.Or:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
                             List<ModelingSet> setsFalse = new List<ModelingSet>();
                             foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.AllNulls))
                             {
@@ -91,14 +91,14 @@ namespace HardwareControl.Lab1
                                 }
                                 setsTrue = InterceptModelingSets(setsTrue, sets);
                             }
-                            _values.Add(false, setsFalse);
-                            _values.Add(true, setsTrue);
-                            _elementSets.Add(element, _values);
+                            values.Add(false, setsFalse);
+                            values.Add(true, setsTrue);
+                            _elementSets.Add(element, values);
                             break;
                         }
                     case ElementsType.NotAnd:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
                             List<ModelingSet> setsTrue = new List<ModelingSet>();
                             foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.ExeptAllOnes))
                             {
@@ -119,14 +119,14 @@ namespace HardwareControl.Lab1
                                 }
                                 setsFalse = InterceptModelingSets(setsFalse, sets);
                             }
-                            _values.Add(false, setsFalse);
-                            _values.Add(true, setsTrue);
-                            _elementSets.Add(element, _values);
+                            values.Add(false, setsFalse);
+                            values.Add(true, setsTrue);
+                            _elementSets.Add(element, values);
                             break;
                         }
                     case ElementsType.NotOr:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
                             List<ModelingSet> setsTrue = new List<ModelingSet>();
                             foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.AllNulls))
                             {
@@ -147,14 +147,14 @@ namespace HardwareControl.Lab1
                                 }
                                 setsFalse = InterceptModelingSets(setsFalse, sets);
                             }
-                            _values.Add(false, setsFalse);
-                            _values.Add(true, setsTrue);
-                            _elementSets.Add(element, _values);
+                            values.Add(false, setsFalse);
+                            values.Add(true, setsTrue);
+                            _elementSets.Add(element, values);
                             break;
                         }
                     case ElementsType.NotXor:
                         {
-                            Dictionary<bool, List<ModelingSet>> _values = new Dictionary<bool, List<ModelingSet>>();
+                            Dictionary<bool, List<ModelingSet>> values = new Dictionary<bool, List<ModelingSet>>();
                             List<ModelingSet> setsFalse = new List<ModelingSet>();
                             foreach (List<bool> set in GenerateSets(element.Inputs.Count, GenerationType.AllNulls))
                             {
@@ -175,9 +175,9 @@ namespace HardwareControl.Lab1
                                 }
                                 setsTrue = InterceptModelingSets(setsTrue, sets);
                             }
-                            _values.Add(false, setsFalse);
-                            _values.Add(true, setsTrue);
-                            _elementSets.Add(element, _values);
+                            values.Add(false, setsFalse);
+                            values.Add(true, setsTrue);
+                            _elementSets.Add(element, values);
                             break;
                         }
                     default: return null;

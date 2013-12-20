@@ -121,7 +121,7 @@ namespace HardwareControl.Lab3
                                 wireWithNull = input;
                             }
                         }
-                        if (kolNull == 1)
+                        if (kolNull == 1 && wireWithNull != null)
                         {
                             set.defects[wireWithNull.Name][true] = true;
                             return ReverseWayActivation(set, wireWithNull.Setter);
@@ -149,7 +149,7 @@ namespace HardwareControl.Lab3
                                 wireWithOne = input;
                             }
                         }
-                        if (kolOnes == 1)
+                        if (kolOnes == 1 && wireWithOne != null)
                         {
                             set.defects[wireWithOne.Name][false] = true;
                             return ReverseWayActivation(set, wireWithOne.Setter);
